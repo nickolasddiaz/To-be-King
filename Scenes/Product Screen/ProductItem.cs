@@ -1,43 +1,42 @@
-using Godot;
 using System;
+using Godot;
 
 public partial class ProductItem : Control
 {
-	[Export(PropertyHint.File, "*.tscn")]
-	private TextureRect productPic;
-	private Texture2D pendingTexture;
-	private bool hasPendingTexture;
-	private Label productLabel;
-	private string pendingText;
-	private bool hasPendingText;
+    [Export(PropertyHint.File, "*.tscn")]
+    private TextureRect productPic;
+    private Texture2D pendingTexture;
+    private bool hasPendingTexture;
+    private Label productLabel;
+    private string pendingText;
+    private bool hasPendingText;
 
-	public override void _Ready()
-	{
-		productPic = GetNodeOrNull<TextureRect>("%Sprite2D");
-		if (productPic != null && hasPendingTexture)
-			productPic.Texture = pendingTexture;
+    public override void _Ready()
+    {
+        productPic = GetNodeOrNull<TextureRect>("%Sprite2D");
+        if (productPic != null && hasPendingTexture)
+            productPic.Texture = pendingTexture;
 
-		productLabel = GetNodeOrNull<Label>("%Label");
-		if (productLabel != null && hasPendingText)
-			productLabel.Text = pendingText;
+        productLabel = GetNodeOrNull<Label>("%Label");
+        if (productLabel != null && hasPendingText)
+            productLabel.Text = pendingText;
+    }
 
-	}
+    public void setTexture(Texture2D pic)
+    {
+        pendingTexture = pic;
+        hasPendingTexture = true;
+        productPic ??= GetNodeOrNull<TextureRect>("%Sprite2D");
+        if (productPic != null)
+            productPic.Texture = pic;
+    }
 
-	public void setTexture(Texture2D pic)
-	{
-		pendingTexture = pic;
-		hasPendingTexture = true;
-		productPic ??= GetNodeOrNull<TextureRect>("%Sprite2D");
-		if (productPic != null)
-			productPic.Texture = pic;
-	}
-
-	public void setText(string text)
-	{
-		pendingText = text;
-		hasPendingText = true;
-		productLabel ??= GetNodeOrNull<Label>("%Label");
-		if (productLabel != null)
-			productLabel.Text = text;
-	}
+    public void setText(string text)
+    {
+        pendingText = text;
+        hasPendingText = true;
+        productLabel ??= GetNodeOrNull<Label>("%Label");
+        if (productLabel != null)
+            productLabel.Text = text;
+    }
 }

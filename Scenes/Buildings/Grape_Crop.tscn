@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://djijpcind03cl"]
+[gd_scene format=3 uid="uid://dsx3yupx1s1fg"]
 
-[ext_resource type="PackedScene" uid="uid://do0y2wwglgffs" path="res://Scenes/Buildings/Building.tscn" id="1_et2yn"]
-[ext_resource type="Script" uid="uid://mu24t7udjcp" path="res://Scenes/Buildings/Grape_Crop.cs" id="2_et2yn"]
+[ext_resource type="PackedScene" uid="uid://bpv0vsrkm4557" path="res://Scenes/Buildings/ACrop.tscn" id="1_mhsrx"]
+[ext_resource type="Script" uid="uid://clhfjovg05btc" path="res://Scenes/Buildings/Grape_Crop.cs" id="2_et2yn"]
 [ext_resource type="Texture2D" uid="uid://46ewnev6ydgf" path="res://Assets/placeholder.png" id="3_m3bfr"]
 
-[node name="Sprite2D" unique_id=1577294057 instance=ExtResource("1_et2yn")]
+[node name="Grape_Crop" unique_id=1508941475 instance=ExtResource("1_mhsrx")]
 script = ExtResource("2_et2yn")
 pic = ExtResource("3_m3bfr")

@@ -1,4 +1,55 @@
 root = true
 
-[*]
+[*.cs]
+# Core Code Formatting Rules
+indent_style = space
+indent_size = 4
+end_of_line = lf
 charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# ==========================================
+# Godot Engine Style Adjustments
+# ==========================================
+
+dotnet_diagnostic.RCS1139.severity = none
+dotnet_diagnostic.RCS1141.severity = none
+dotnet_diagnostic.RCS1181.severity = none
+dotnet_diagnostic.RCS1161.severity = none
+
+# IDE0051 / IDE0060: Unused members or parameters
+# Godot invokes methods like _Ready, _Process, and _UnhandledInput implicitly via engine internals.
+dotnet_diagnostic.IDE0051.severity = silent
+dotnet_diagnostic.IDE0060.severity = suggestion
+
+# CA1050: Declare types in namespaces
+# Many Godot classes (like attached node scripts) benefit from being in the global namespace.
+dotnet_diagnostic.CA1050.severity = none
+
+# IDE1006: Naming Conventions (Godot Virtual Methods)
+# Allows the classic Godot lowercase-underscore layout without naming warnings.
+dotnet_naming_rule.godot_virtuals.symbols = godot_methods
+dotnet_naming_rule.godot_virtuals.style = lowercase_underscore
+dotnet_naming_rule.godot_virtuals.severity = silent
+
+dotnet_naming_symbols.godot_methods.applicable_kinds = method
+dotnet_naming_symbols.godot_methods.applicable_accessibilities = protected, private
+dotnet_naming_style.lowercase_underscore.capitalization = pascal_case
+dotnet_naming_style.lowercase_underscore.required_prefix = _
+
+# ==========================================
+# Roslynator Framework Tuning
+# ==========================================
+dotnet_analyzer_diagnostic.category-roslynator.severity = warning
+# RCS1163: Unused parameters (Ignore on Godot lifecycles like _Process(double delta))
+dotnet_diagnostic.RCS1163.severity = none
+
+# CA1051: Do not declare visible instance fields
+dotnet_diagnostic.CA1051.severity = none
+
+# RCS1110: Declare type inside namespace
+dotnet_diagnostic.RCS1110.severity = none
+
+# CA1707: Identifiers should not contain underscores
+dotnet_diagnostic.CA1707.severity = none

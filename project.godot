@@ -19,6 +19,8 @@ config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 DayInfo="*uid://dwb5unstn3qab"
 PlayerData="*res://Global Scripts/PlayerData.tscn"
 ScreenManager="*uid://bcijc7biouvwl"
+PlacementData="*uid://dno6paarnvbhj"
+AudioManager="*uid://b8ttfjfj2ascj"
 
 [display]
 
@@ -27,7 +29,7 @@ window/stretch/aspect="expand"
 
 [dotnet]
 
-project/assembly_name="Game Jam Project"
+project/assembly_name="project"
 
 [editor_plugins]
 

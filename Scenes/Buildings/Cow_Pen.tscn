@@ -1,10 +1,9 @@
-[gd_scene format=3 uid="uid://oi5hwskl8oa"]
+[gd_scene format=3 uid="uid://crxkq3n8ywhcj"]
 
-[ext_resource type="PackedScene" uid="uid://do0y2wwglgffs" path="res://Scenes/Buildings/Building.tscn" id="1_eqanm"]
-[ext_resource type="Script" uid="uid://cd0ne3qgjv5gx" path="res://Scenes/Buildings/Cow_Pen.cs" id="2_eqanm"]
+[ext_resource type="PackedScene" uid="uid://ddi6hf2gleqi5" path="res://Scenes/Buildings/APen.tscn" id="1_5n54h"]
+[ext_resource type="Script" uid="uid://dcewnh0wnqnd2" path="res://Scenes/Buildings/Cow_Pen.cs" id="2_eqanm"]
 [ext_resource type="Texture2D" uid="uid://46ewnev6ydgf" path="res://Assets/placeholder.png" id="3_tivdx"]
 
-[node name="Sprite2D" unique_id=1577294057 instance=ExtResource("1_eqanm")]
+[node name="Cow_Pen" unique_id=1508941475 instance=ExtResource("1_5n54h")]
 script = ExtResource("2_eqanm")
-Size = Vector2(2, 1)
 pic = ExtResource("3_tivdx")

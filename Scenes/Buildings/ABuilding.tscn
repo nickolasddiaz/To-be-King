@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://do0y2wwglgffs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bbji"]
+size = Vector2(32, 32)
+
+[node name="Building" type="Node2D" unique_id=1508941475 groups=["Buildings"]]
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1684161877]
+unique_name_in_owner = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=98190789]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1400505206]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_5bbji")

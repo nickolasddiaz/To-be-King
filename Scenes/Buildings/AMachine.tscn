@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cjtlhmnj3slx4"]
+
+[ext_resource type="PackedScene" uid="uid://do0y2wwglgffs" path="res://Scenes/Buildings/ABuilding.tscn" id="1_gm0ht"]
+
+[node name="AMachine" unique_id=1508941475 instance=ExtResource("1_gm0ht")]

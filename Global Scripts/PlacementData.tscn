@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dno6paarnvbhj"]
+
+[ext_resource type="Script" uid="uid://bsaondynjp4pa" path="res://Global Scripts/PlacementData.cs" id="1_0ukto"]
+
+[node name="PlacementData" type="Node" unique_id=2037352717]
+script = ExtResource("1_0ukto")
