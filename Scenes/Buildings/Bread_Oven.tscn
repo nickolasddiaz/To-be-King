@@ -2,8 +2,24 @@
 
 [ext_resource type="PackedScene" uid="uid://cjtlhmnj3slx4" path="res://Scenes/Buildings/AMachine.tscn" id="1_2ouoo"]
 [ext_resource type="Script" uid="uid://cnphhf1hff8qs" path="res://Scenes/Buildings/Bread_Oven.cs" id="2_dla7f"]
-[ext_resource type="Texture2D" uid="uid://46ewnev6ydgf" path="res://Assets/placeholder.png" id="3_phahs"]
+[ext_resource type="SpriteFrames" uid="uid://cl8u1gh2o2s8i" path="res://Assets/Buildings/Bread_Oven_Base.ase_layer" id="3_phahs"]
+[ext_resource type="SpriteFrames" uid="uid://xevljvcrwjcq" path="res://Assets/Buildings/Bread_Oven_Barley.ase_layer" id="3_v0g4y"]
+[ext_resource type="SpriteFrames" uid="uid://d3811gefafe6i" path="res://Assets/Buildings/Bread_Oven_Bread.ase_layer" id="4_42e3w"]
 
 [node name="Bread_Oven" unique_id=1508941475 instance=ExtResource("1_2ouoo")]
 script = ExtResource("2_dla7f")
-pic = ExtResource("3_phahs")
+Size = Vector2(2, 1)
+
+[node name="BaseAnimatedSprite" parent="." index="0" unique_id=1231940941]
+sprite_frames = ExtResource("3_phahs")
+animation = &"Idle"
+
+[node name="BarelyAnimatedSprite" type="AnimatedSprite2D" parent="." index="1" unique_id=99597084]
+unique_name_in_owner = true
+sprite_frames = ExtResource("3_v0g4y")
+animation = &"Idle"
+
+[node name="BreadAnimatedSprite" type="AnimatedSprite2D" parent="." index="2" unique_id=341710792]
+unique_name_in_owner = true
+sprite_frames = ExtResource("4_42e3w")
+animation = &"Idle"

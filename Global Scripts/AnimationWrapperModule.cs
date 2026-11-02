@@ -57,16 +57,13 @@ public partial class AnimationWrapperModule : AnimatedSprite2D
                 ChangeAnimation("RIGHT");
             }
         }
+        else if (dir.Y < 0)
+        {
+            ChangeAnimation("UP");
+        }
         else
         {
-            if (dir.Y < 0)
-            {
-                ChangeAnimation("UP");
-            }
-            else
-            {
-                ChangeAnimation("DOWN");
-            }
+            ChangeAnimation("DOWN");
         }
     }
 }

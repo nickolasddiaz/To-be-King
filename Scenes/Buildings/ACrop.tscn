@@ -1,5 +1,14 @@
 [gd_scene format=3 uid="uid://bpv0vsrkm4557"]
 
 [ext_resource type="PackedScene" uid="uid://do0y2wwglgffs" path="res://Scenes/Buildings/ABuilding.tscn" id="1_87s68"]
+[ext_resource type="SpriteFrames" uid="uid://dane0ocdlrjkg" path="res://Assets/Buildings/Crop_Soil.ase_layer" id="2_87s68"]
 
 [node name="ACrop" unique_id=1508941475 instance=ExtResource("1_87s68")]
+scale = Vector2(1, 1)
+
+[node name="BaseAnimatedSprite" parent="." index="0" unique_id=1231940941]
+sprite_frames = ExtResource("2_87s68")
+animation = &"Stage_Base"
+
+[node name="CropAnimatedSprite" type="AnimatedSprite2D" parent="." index="1" unique_id=1236995356]
+unique_name_in_owner = true

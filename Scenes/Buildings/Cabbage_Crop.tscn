@@ -2,8 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://bpv0vsrkm4557" path="res://Scenes/Buildings/ACrop.tscn" id="1_gwnr0"]
 [ext_resource type="Script" uid="uid://csbgm3doyhbwy" path="res://Scenes/Buildings/Cabbage_Crop.cs" id="2_0wsru"]
-[ext_resource type="Texture2D" uid="uid://46ewnev6ydgf" path="res://Assets/placeholder.png" id="3_3vly5"]
+[ext_resource type="SpriteFrames" uid="uid://dtvuu61ey5mj0" path="res://Assets/Buildings/Crop_Cabbage_Crop.ase_layer" id="3_n6jde"]
 
 [node name="Cabbage_Crop" unique_id=1508941475 instance=ExtResource("1_gwnr0")]
 script = ExtResource("2_0wsru")
-pic = ExtResource("3_3vly5")
+
+[node name="BaseAnimatedSprite" parent="." index="0" unique_id=1231940941]
+animation = &"Stage_1"
+
+[node name="CropAnimatedSprite" parent="." index="1" unique_id=1236995356]
+sprite_frames = ExtResource("3_n6jde")
+animation = &"Stage_1"

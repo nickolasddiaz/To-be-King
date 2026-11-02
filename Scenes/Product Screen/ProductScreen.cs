@@ -17,7 +17,7 @@ public partial class ProductScreen : Control
         hBoxContainer = GetNode<HBoxContainer>("%HBoxContainer");
         timeLabel = GetNode<Label>("%Time");
 
-        foreach (var (product, texture) in PlayerData.Instance.ProductIcons)
+        foreach (var (product, texture) in PlayerData.Instance.productIconsDict)
         {
             ProductItem sceneInstance = (ProductItem)product_item.Instantiate();
             sceneInstance.setTexture(texture);

@@ -3,9 +3,17 @@ using Godot;
 
 public partial class Bread_Oven : AMachine
 {
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready() { }
+    public AnimatedSprite2D barelyFrames;
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public AnimatedSprite2D breadFrames;
+
+    public new BuildingType buildingType = BuildingType.Bread_Oven;
+
+    public override void _Ready()
+    {
+        barelyFrames = GetNode<AnimatedSprite2D>("%BarelyAnimatedSprite");
+        breadFrames = GetNode<AnimatedSprite2D>("%BreadAnimatedSprite");
+    }
+
     public override void _Process(double delta) { }
 }

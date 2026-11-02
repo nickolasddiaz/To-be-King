@@ -2,8 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://bpv0vsrkm4557" path="res://Scenes/Buildings/ACrop.tscn" id="1_mhsrx"]
 [ext_resource type="Script" uid="uid://clhfjovg05btc" path="res://Scenes/Buildings/Grape_Crop.cs" id="2_et2yn"]
-[ext_resource type="Texture2D" uid="uid://46ewnev6ydgf" path="res://Assets/placeholder.png" id="3_m3bfr"]
+[ext_resource type="SpriteFrames" uid="uid://cnbnhybrxlkm" path="res://Assets/Buildings/Crop_Grape_Crop.ase_layer" id="3_fre31"]
 
 [node name="Grape_Crop" unique_id=1508941475 instance=ExtResource("1_mhsrx")]
 script = ExtResource("2_et2yn")
-pic = ExtResource("3_m3bfr")
+
+[node name="CropAnimatedSprite" parent="." index="1" unique_id=1236995356]
+sprite_frames = ExtResource("3_fre31")
+animation = &"Stage_1"

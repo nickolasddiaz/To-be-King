@@ -24,7 +24,7 @@ public partial class BuildingUiButton : Control
             productLabel.Text = pendingText;
     }
 
-    public void onClick() { }
+    public static void onClick() { }
 
     public void setBuildingType(BuildingType building)
     {

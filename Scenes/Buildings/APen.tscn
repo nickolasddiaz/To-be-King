@@ -1,5 +1,31 @@
 [gd_scene format=3 uid="uid://ddi6hf2gleqi5"]
 
 [ext_resource type="PackedScene" uid="uid://do0y2wwglgffs" path="res://Scenes/Buildings/ABuilding.tscn" id="1_vnge7"]
+[ext_resource type="SpriteFrames" uid="uid://x38t3w7wu6e6" path="res://Assets/Buildings/Pen_Base.ase_layer" id="2_5h7jh"]
+[ext_resource type="SpriteFrames" uid="uid://kxex1qo3xnbc" path="res://Assets/Buildings/Pen_Barley.ase_layer" id="3_j7onf"]
+[ext_resource type="SpriteFrames" uid="uid://qvjwv3al6oia" path="res://Assets/Buildings/Pen_Fense.ase_layer" id="4_l53sc"]
 
 [node name="APen" unique_id=1508941475 instance=ExtResource("1_vnge7")]
+
+[node name="BaseAnimatedSprite" parent="." index="0" unique_id=1231940941]
+sprite_frames = ExtResource("2_5h7jh")
+animation = &"Idle"
+
+[node name="BarelyAnimatedSprite" type="AnimatedSprite2D" parent="." index="1" unique_id=1285229992]
+unique_name_in_owner = true
+sprite_frames = ExtResource("3_j7onf")
+animation = &"Idle"
+
+[node name="ProduceAnimatedSprite" type="AnimatedSprite2D" parent="." index="2" unique_id=971880390]
+unique_name_in_owner = true
+
+[node name="AnimalAnimatedSprite" type="AnimatedSprite2D" parent="." index="3" unique_id=684025832]
+unique_name_in_owner = true
+
+[node name="FenceAnimatedSprite" type="AnimatedSprite2D" parent="." index="4" unique_id=234209907]
+unique_name_in_owner = true
+sprite_frames = ExtResource("4_l53sc")
+animation = &"Idle"
+
+[node name="Area2D" parent="." index="5" unique_id=98190789]
+scale = Vector2(2, 1)

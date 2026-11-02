@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cfqqkc536vx5f"]
 
 [ext_resource type="Script" uid="uid://cfeh76a1r7otl" path="res://Scenes/Task Screen/NextTaskScreenBox.cs" id="1_pwxx1"]
-[ext_resource type="Texture2D" uid="uid://46ewnev6ydgf" path="res://Assets/placeholder.png" id="2_u5mxm"]
 
 [node name="Inventory_box" type="ColorRect" unique_id=1193527169]
 custom_minimum_size = Vector2(128, 128)
@@ -15,7 +14,6 @@ unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(64, 64)
 scale = Vector2(2, 2)
-texture = ExtResource("2_u5mxm")
 
 [node name="Label" type="Label" parent="." unique_id=2140705785]
 unique_name_in_owner = true

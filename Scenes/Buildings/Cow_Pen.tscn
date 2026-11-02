@@ -2,8 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://ddi6hf2gleqi5" path="res://Scenes/Buildings/APen.tscn" id="1_5n54h"]
 [ext_resource type="Script" uid="uid://dcewnh0wnqnd2" path="res://Scenes/Buildings/Cow_Pen.cs" id="2_eqanm"]
-[ext_resource type="Texture2D" uid="uid://46ewnev6ydgf" path="res://Assets/placeholder.png" id="3_tivdx"]
+[ext_resource type="SpriteFrames" uid="uid://bfsw5i706o2i" path="res://Assets/Buildings/Pen_Cow.ase_layer" id="3_v88oh"]
+[ext_resource type="SpriteFrames" uid="uid://dymbeol8612p2" path="res://Assets/Buildings/Pen_Milk.ase_layer" id="4_3j85u"]
 
 [node name="Cow_Pen" unique_id=1508941475 instance=ExtResource("1_5n54h")]
 script = ExtResource("2_eqanm")
-pic = ExtResource("3_tivdx")
+Size = Vector2(2, 1)
+
+[node name="ProduceAnimatedSprite" parent="." index="2" unique_id=971880390]
+sprite_frames = ExtResource("4_3j85u")
+animation = &"Idle"
+
+[node name="AnimalAnimatedSprite" parent="." index="3" unique_id=684025832]
+sprite_frames = ExtResource("3_v88oh")
+animation = &"Idle"

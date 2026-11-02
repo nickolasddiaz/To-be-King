@@ -4,9 +4,9 @@
 size = Vector2(32, 32)
 
 [node name="Building" type="Node2D" unique_id=1508941475 groups=["Buildings"]]
-scale = Vector2(2, 2)
+texture_filter = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1684161877]
+[node name="BaseAnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=1231940941]
 unique_name_in_owner = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=98190789]

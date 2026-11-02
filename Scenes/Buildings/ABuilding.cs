@@ -1,8 +1,6 @@
 using System;
 using Godot;
 
-/// Base class for every building (crops, pens, ovens, distillery...).
-/// Needs a CollisionShape2D child so the player can detect clicks on it.
 public abstract partial class ABuilding : Node2D
 {
     // Shared properties that every building MUST define in the Inspector
@@ -12,33 +10,22 @@ public abstract partial class ABuilding : Node2D
     [Export]
     public Vector2 Size { get; set; } = new Vector2(1, 1);
 
-    [Export]
-    public Texture2D pic { get; set; }
+    public AnimatedSprite2D baseFrames;
 
-    [Export]
-    public SpriteFrames frames { get; set; }
+    public virtual BuildingType buildingType { get; set; }
 
-    const float BUILDINGUNITSIZE = 32.0f;
+    public const float BUILDINGUNITSIZE = 32.0f;
+
+    public virtual ImageTexture getImageTexture()
+    {
+        return new ImageTexture();
+    }
 
     public virtual void OnInteract() { }
 
-    private void set_area2d_size()
-    {
-        var shape = GetNode<CollisionShape2D>("%CollisionShape2D");
-
-        if (shape.Shape is RectangleShape2D rectangle)
-        {
-            rectangle.Size = Size * BUILDINGUNITSIZE;
-        }
-        else
-        {
-            throw new Exception("Building CollisionShape2D needs to be a RectangleShape2D");
-        }
-    }
-
     public override void _Ready()
     {
-        set_area2d_size();
+        baseFrames = GetNode<AnimatedSprite2D>("%BaseAnimatedSprite");
     }
 
     public override void _Process(double delta)
@@ -49,5 +36,32 @@ public abstract partial class ABuilding : Node2D
     public virtual void Interact(Player player)
     {
         OnInteract();
+    }
+
+    protected ImageTexture helperGetTexture2D(Texture2D[] texture)
+    {
+        Image combinedImg = Image.CreateEmpty(
+            (int)(Size.X * BUILDINGUNITSIZE),
+            (int)(Size.Y * BUILDINGUNITSIZE),
+            false,
+            Image.Format.Rgba8
+        );
+
+        Image GetSubImage(Texture2D tex)
+        {
+            Image fullImg = tex.GetImage();
+            if (tex is AtlasTexture atlasTex)
+            {
+                return fullImg.GetRegion((Rect2I)atlasTex.Region);
+            }
+            return fullImg;
+        }
+
+        foreach (var tex in texture)
+        {
+            Image img = GetSubImage(tex);
+            combinedImg.BlendRect(img, new Rect2I(Vector2I.Zero, img.GetSize()), Vector2I.Zero);
+        }
+        return ImageTexture.CreateFromImage(combinedImg);
     }
 }

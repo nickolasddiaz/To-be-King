@@ -38,7 +38,7 @@ public partial class EndOfDayScreen : Control
             }
 
             label.Text = "You passed this day: going to the next day";
-            PlayerData.Instance.day += 1;
+            PlayerData.Instance.day++;
         }
         else
         {

@@ -31,10 +31,7 @@ public partial class ScreenManager : Node
             else
             {
                 var parent = _currentScreen.GetParent();
-                if (parent != null)
-                {
-                    parent.CallDeferred(Node.MethodName.RemoveChild, _currentScreen);
-                }
+                parent?.CallDeferred(Node.MethodName.RemoveChild, _currentScreen);
             }
         }
 

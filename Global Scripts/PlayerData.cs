@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Godot;
 
 public enum ProductType
@@ -29,7 +30,7 @@ public enum BuildingType
 public class BuildingData
 {
     public int Cost;
-    public Texture2D PlacementTexture;
+    public ImageTexture PlacementTexture;
     public Texture2D IconTexture;
     public PackedScene BuildingScene;
 
@@ -41,17 +42,16 @@ public class BuildingData
 
         if (BuildingScene is null)
         {
-            throw new NullReferenceException($"Building's location is unknown: {Path}");
+            throw new InvalidOperationException($"Building's location is unknown: {Path}");
         }
 
         var instance = BuildingScene.Instantiate();
         if (instance is not ABuilding building)
         {
-            throw new Exception($"Scene root must inherit Building: {Path}");
+            throw new InvalidOperationException($"Scene root must inherit Building: {Path}");
         }
 
         Cost = building.Cost;
-        PlacementTexture = building.pic;
         Size = (Vector2I)building.Size;
         building.Free();
     }
@@ -63,7 +63,7 @@ public partial class PlayerData : Node
         new Godot.Collections.Dictionary<ProductType, int>();
     public Godot.Collections.Dictionary<BuildingType, bool> isBuildingUnlockedDict =
         new Godot.Collections.Dictionary<BuildingType, bool>();
-    public Godot.Collections.Dictionary<ProductType, Texture2D> ProductIcons = new() { };
+    public Godot.Collections.Dictionary<ProductType, Texture2D> productIconsDict = new() { };
     public Dictionary<BuildingType, BuildingData> Buildings = new() { };
     public int money = 5000;
     public int day;
@@ -72,7 +72,7 @@ public partial class PlayerData : Node
     public static PlayerData Instance { get; private set; } // setting PlayerData static
     public ProductScreen productScreen;
     public float time = 4; // seconds
-    public bool startTimer = false;
+    public bool startTimer;
 
     [Export]
     public SpriteFrames productIcons { get; set; }
@@ -80,7 +80,7 @@ public partial class PlayerData : Node
     [Export]
     public SpriteFrames buildingIcons { get; set; }
 
-    public override void _Ready()
+    public override async void _Ready()
     {
         Instance = this; // setting PlayerData static
         foreach (ProductType product in Enum.GetValues<ProductType>())
@@ -89,23 +89,50 @@ public partial class PlayerData : Node
 
             if (frameTexture == null)
             {
-                throw new NullReferenceException(
+                throw new InvalidOperationException(
                     $"spr_productIcons.aseprite: A frame is null: {product}"
                 );
             }
 
-            ProductIcons[product] = frameTexture;
+            productIconsDict[product] = frameTexture;
             productAmounts[product] = 0;
         }
 
         foreach (BuildingType building in Enum.GetValues<BuildingType>())
         {
-            //temporary
             isBuildingUnlockedDict[building] = true;
-            Buildings[building] = new BuildingData($"res://Scenes/Buildings/{building}.tscn");
-            Texture2D frameTexture = buildingIcons.GetFrameTexture(building.ToString(), 0);
-            Buildings[building].IconTexture = frameTexture;
+
+            var data = new BuildingData($"res://Scenes/Buildings/{building}.tscn")
+            {
+                IconTexture = buildingIcons.GetFrameTexture(building.ToString(), 0),
+            };
+            Buildings[building] = data;
+
+            data.PlacementTexture = await RenderBuildingAsync(data.BuildingScene, data.Size);
         }
+    }
+
+    private async Task<ImageTexture> RenderBuildingAsync(PackedScene scene, Vector2I size)
+    {
+        var viewport = new SubViewport
+        {
+            Size = size * (int)ABuilding.BUILDINGUNITSIZE,
+            TransparentBg = true,
+            Disable3D = true,
+            RenderTargetUpdateMode = SubViewport.UpdateMode.Once,
+        };
+        AddChild(viewport);
+
+        var building = scene.Instantiate<ABuilding>();
+        building.Position = new Vector2(viewport.Size.X, viewport.Size.Y) / 2f;
+        viewport.AddChild(building);
+
+        await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
+
+        Image image = viewport.GetTexture().GetImage();
+        viewport.QueueFree();
+
+        return ImageTexture.CreateFromImage(image);
     }
 
     public void newDay()
@@ -140,7 +167,7 @@ public partial class PlayerData : Node
         // placementManager.ProcessMode = ProcessModeEnum.Inherit;
         // placementManager.Visible = true;
         startTimer = false;
-        var endDayPath = "res://Scenes/end_of_day_screen.tscn";
+        const string endDayPath = "res://Scenes/end_of_day_screen.tscn";
         ScreenManager.Instance.SwitchScreenPath(endDayPath, false);
         endOfDayScreen.updateEndofDay();
     }
@@ -150,12 +177,7 @@ public partial class PlayerData : Node
         TimeSpan elapsedTime = TimeSpan.FromSeconds(time);
 
         // Format as minute:second
-        string formattedTime = string.Format(
-            "{0:D2}:{1:D2}",
-            (int)elapsedTime.TotalMinutes,
-            elapsedTime.Seconds
-        );
-        return formattedTime;
+        return string.Format("{0:D2}:{1:D2}", (int)elapsedTime.TotalMinutes, elapsedTime.Seconds);
     }
 
     public override void _Process(double delta)

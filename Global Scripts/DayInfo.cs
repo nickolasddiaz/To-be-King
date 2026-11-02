@@ -38,6 +38,13 @@ public partial class DayInfo : Node
 {
     public static DayInfo Instance { get; private set; }
 
+    private static readonly JsonSerializerOptions DayJsonOptions = new()
+    {
+        Converters = { new JsonStringEnumConverter() },
+        UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
+        PropertyNameCaseInsensitive = false,
+    };
+
     [Export(PropertyHint.File, "*.json")]
     public string JsonDayFile { get; set; }
     public List<Day> Days;
@@ -57,28 +64,24 @@ public partial class DayInfo : Node
     {
         if (!FileAccess.FileExists(filePath))
         {
-            throw new Exception($"Config file not found at: {filePath}");
+            throw new System.IO.FileNotFoundException(
+                $"Config file not found at: {filePath}",
+                filePath
+            );
         }
 
         using var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Read);
         string jsonString = file.GetAsText();
 
-        var options = new JsonSerializerOptions
-        {
-            Converters = { new JsonStringEnumConverter() },
-            UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
-            PropertyNameCaseInsensitive = false,
-        };
-
         try
         {
             Days =
-                JsonSerializer.Deserialize<List<Day>>(jsonString, options)
+                JsonSerializer.Deserialize<List<Day>>(jsonString, DayJsonOptions)
                 ?? throw new JsonException("Deserialized result was null.");
         }
         catch (JsonException ex)
         {
-            throw new JsonException($"[CRITICAL] Failed to parse DayInfo JSON: {ex.Message}");
+            throw new JsonException($"Failed to parse DayInfo JSON: {ex.Message}");
         }
     }
 }

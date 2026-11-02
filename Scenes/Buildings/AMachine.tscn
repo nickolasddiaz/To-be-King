@@ -3,3 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://do0y2wwglgffs" path="res://Scenes/Buildings/ABuilding.tscn" id="1_gm0ht"]
 
 [node name="AMachine" unique_id=1508941475 instance=ExtResource("1_gm0ht")]
+
+[node name="Area2D" parent="." index="1" unique_id=98190789]
+scale = Vector2(2, 1)

@@ -3,9 +3,12 @@ using Godot;
 
 public abstract partial class ACrop : ABuilding
 {
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready() { }
+    public AnimatedSprite2D cropFrames;
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Ready()
+    {
+        cropFrames = GetNode<AnimatedSprite2D>("%CropAnimatedSprite");
+    }
+
     public override void _Process(double delta) { }
 }

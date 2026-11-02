@@ -3,9 +3,21 @@ using Godot;
 
 public abstract partial class APen : ABuilding
 {
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready() { }
+    public AnimatedSprite2D barelyFrames;
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public AnimatedSprite2D produceFrames;
+
+    public AnimatedSprite2D animalFrames;
+
+    public AnimatedSprite2D fenceFrames;
+
+    public override void _Ready()
+    {
+        barelyFrames = GetNode<AnimatedSprite2D>("%BaseAnimatedSprite");
+        produceFrames = GetNode<AnimatedSprite2D>("%BaseAnimatedSprite");
+        animalFrames = GetNode<AnimatedSprite2D>("%BaseAnimatedSprite");
+        fenceFrames = GetNode<AnimatedSprite2D>("%BaseAnimatedSprite");
+    }
+
     public override void _Process(double delta) { }
 }

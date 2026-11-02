@@ -104,8 +104,7 @@ public partial class Player : CharacterBody2D
             CollideWithBodies = false,
         };
 
-        var hits = GetWorld2D().DirectSpaceState.IntersectPoint(query);
-        foreach (var hit in hits)
+        foreach (var hit in GetWorld2D().DirectSpaceState.IntersectPoint(query))
         {
             if (hit["collider"].AsGodotObject() is ABuilding b)
             {

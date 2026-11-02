@@ -23,14 +23,14 @@ public partial class TaskSreen : Control
             child.QueueFree();
         }
 
-        foreach (var (product, texture) in PlayerData.Instance.ProductIcons)
+        foreach (var (product, texture) in PlayerData.Instance.productIconsDict)
         {
             var sceneInstance = (NextTaskScreenBox)next_task_screen_box.Instantiate();
             sceneInstance.setTexture(texture);
             int productCount = 0;
-            if (DayInfo.Instance.Days[0].ProductNeeds.ContainsKey(product))
+            if (DayInfo.Instance.Days[0].ProductNeeds.TryGetValue(product, out int value))
             {
-                productCount = DayInfo.Instance.Days[0].ProductNeeds[product];
+                productCount = value;
             }
             else
             {
@@ -55,7 +55,7 @@ public partial class TaskSreen : Control
     private void OnButtonPressed()
     {
         ScreenManager.Instance.SwitchScreenPath(NextPath, false);
-        foreach (ProductType product in PlayerData.Instance.ProductIcons.Keys)
+        foreach (ProductType product in PlayerData.Instance.productIconsDict.Keys)
         {
             if (!PlayerData.Instance.productAmounts.ContainsKey(product))
             {

@@ -37,9 +37,7 @@ public partial class BuildingUi : Control
             inventoryContainer.AddChild(sceneInstance);
 
             sceneInstance.GetNode<Button>("%Button").Pressed += () =>
-            {
                 PlacementData.Instance.selectBuilding(buildingType);
-            };
         }
     }
 

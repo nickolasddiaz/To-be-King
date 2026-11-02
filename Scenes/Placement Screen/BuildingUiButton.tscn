@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://tn1ugyflvcsy"]
 
 [ext_resource type="Script" uid="uid://cxvvki4340i4p" path="res://Scenes/Placement Screen/BuildingUiButton.cs" id="1_c5yud"]
-[ext_resource type="Texture2D" uid="uid://46ewnev6ydgf" path="res://Assets/placeholder.png" id="2_s4tsl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c5yud"]
 line_spacing = 1.0
@@ -41,4 +40,3 @@ offset_left = 1.0
 offset_top = 1.0
 offset_right = 33.0
 offset_bottom = 33.0
-icon = ExtResource("2_s4tsl")

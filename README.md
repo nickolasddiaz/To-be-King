@@ -66,18 +66,39 @@ To-be-King $tree -a -L 1
 
 ## Diagram of the Game
 
+### Screen Management
+
 ```mermaid
 graph TD;
     A["Start Game Screen"] <--> B["Credits screen"]
     A --> C["Story Intro Screen"]
     C --> D["Tutorial Screen"]
-    D --> E["Task Sreen"]
+    D --> E["Task Screen"]
     E --> F["Placement Screen"]
     F --> G["Game Play"]
     G --> I["End of Day"]
     I --> E
     I --> K["End of Game"]
     K --> A
+```
+
+### Building Hierarchy
+
+Using inherited scenes and abstract classes
+
+```mermaid
+graph TD;
+    A["ABuilding"] --> B["ACrop"]
+    A --> C["AMachine"]
+    A --> D["APen"]
+    A --> E["Hut"]
+    B --> F["Cabbage Crop"]
+    B --> G["Barley Crop"]
+    B --> H["Grape Crop"]
+    C --> I["Distillery"]
+    C --> J["Bread Oven"]
+    D --> K["Sheep Pen"]
+    D --> L["Cow Pen"]
 ```
 
 ## About

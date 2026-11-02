@@ -5,9 +5,9 @@ public partial class PlacementData : Node
 {
     public Vector2I BuildingSize = new Vector2I(1, 1);
     public Texture2D PlacementTexture;
-    public int buildingcost = 0;
+    public int buildingcost;
     public PackedScene buildingToSpawn;
-    public bool PlacementEnabled = false;
+    public bool PlacementEnabled;
     public PlacementManager placementManager;
 
     public Node buildingContainer;

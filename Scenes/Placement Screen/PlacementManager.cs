@@ -109,7 +109,7 @@ public partial class PlacementManager : Node2D
         return true;
     }
 
-    private bool IsCellInsideGrid(Vector2I cell)
+    private static bool IsCellInsideGrid(Vector2I cell)
     {
         //so this is my old code...basically outlines the boundaries
         return cell.X >= 2 && cell.X < 16 && cell.Y >= 2 && cell.Y < 10;
@@ -142,7 +142,7 @@ public partial class PlacementManager : Node2D
         //Since the rectangles origin is 0,0 they are drawn top left. This means we need to divide from the axis.
         //Preview not artual building placement.
 
-        Vector2 cellposition = GetCellCenter(hoveredcell) - new Vector2(cellsize, cellsize) / 2f;
+        Vector2 cellposition = GetCellCenter(hoveredcell) - (new Vector2(cellsize, cellsize) / 2f);
 
         //I dont know if we need this resize actually. It might double scale
         Vector2 size = (Vector2)PlacementData.Instance.BuildingSize * cellsize;
