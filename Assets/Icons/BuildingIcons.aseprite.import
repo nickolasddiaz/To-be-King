@@ -3,12 +3,12 @@
 importer="aseprite_wizard.plugin.spriteframes"
 type="SpriteFrames"
 uid="uid://cwkefxegcen2r"
-path="res://.godot/imported/building_icons.aseprite-e25d8882d16ee3390453d8e5f7964626.res"
+path="res://.godot/imported/BuildingIcons.aseprite-0a6eb471f39469ae9afb14ea94ea7f52.res"
 
 [deps]
 
-source_file="res://Assets/Icons/building_icons.aseprite"
-dest_files=["res://.godot/imported/building_icons.aseprite-e25d8882d16ee3390453d8e5f7964626.res"]
+source_file="res://Assets/Icons/BuildingIcons.aseprite"
+dest_files=["res://.godot/imported/BuildingIcons.aseprite-0a6eb471f39469ae9afb14ea94ea7f52.res"]
 
 [params]
 

@@ -2,17 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ddi6hf2gleqi5" path="res://Scenes/Buildings/APen.tscn" id="1_fho3t"]
 [ext_resource type="Script" uid="uid://dtiw1os4vc0r8" path="res://Scenes/Buildings/Sheep_Pen.cs" id="2_byn86"]
-[ext_resource type="SpriteFrames" uid="uid://546l3dwog71p" path="res://Assets/Buildings/Pen_Sheep.ase_layer" id="3_5kqsr"]
-[ext_resource type="SpriteFrames" uid="uid://b4ygm02dap1sp" path="res://Assets/Buildings/Pen_Wool.ase_layer" id="4_dqc27"]
 
 [node name="Sheep_Pen" unique_id=1508941475 instance=ExtResource("1_fho3t")]
 script = ExtResource("2_byn86")
 Size = Vector2(2, 1)
-
-[node name="ProduceAnimatedSprite" parent="." index="2" unique_id=971880390]
-sprite_frames = ExtResource("4_dqc27")
-animation = &"Idle"
-
-[node name="AnimalAnimatedSprite" parent="." index="3" unique_id=684025832]
-sprite_frames = ExtResource("3_5kqsr")
-animation = &"Idle"

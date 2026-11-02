@@ -7,9 +7,6 @@
 [node name="Barley_Crop" unique_id=1508941475 instance=ExtResource("1_bdg56")]
 script = ExtResource("2_ivao5")
 
-[node name="BaseAnimatedSprite" parent="." index="0" unique_id=1231940941]
-animation = &"Stage_1"
-
 [node name="CropAnimatedSprite" parent="." index="1" unique_id=1236995356]
 sprite_frames = ExtResource("3_poxtq")
-animation = &"Stage_1"
+animation = &"Stage_Final"

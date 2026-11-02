@@ -28,9 +28,8 @@ public partial class EndOfDayScreen : Control
     public void updateEndofDay()
     {
         title.Text = $"End of day results:{PlayerData.Instance.day + 1}";
-        bool passed = PlayerData.Instance.productAmounts.Values.All(value => value == 0);
 
-        if (passed)
+        if (Products.Instance.checkIfProductsAreSatisfied())
         {
             if (PlayerData.Instance.day == DayInfo.Instance.lastday())
             {

@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://bcijc7biouvwl" path="res://Global Scripts/ScreenManager.cs" id="1_3oc4r"]
 
-[node name="ScreenManager" type="Node2D" unique_id=1479536285]
+[node name="ScreenManager" type="Node" unique_id=322099646]
 script = ExtResource("1_3oc4r")

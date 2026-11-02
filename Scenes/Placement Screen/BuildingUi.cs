@@ -22,7 +22,7 @@ public partial class BuildingUi : Control
             child.QueueFree();
         }
 
-        foreach (var (buildingType, buildData) in PlayerData.Instance.Buildings)
+        foreach (var (buildingType, buildData) in Buildings.Instance.data)
         {
             // Fetch cost/texture from a lightweight data source instead of instantiating the whole scene tree
             int cost = buildData.Cost;

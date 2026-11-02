@@ -2,12 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cjtlhmnj3slx4" path="res://Scenes/Buildings/AMachine.tscn" id="1_ojojo"]
 [ext_resource type="Script" uid="uid://cukg6a2n5tgi" path="res://Scenes/Buildings/Distillery.cs" id="2_w28ql"]
-[ext_resource type="SpriteFrames" uid="uid://cidvy425rupeo" path="res://Assets/Buildings/Distillery_Barley.ase_layer" id="3_e1odu"]
-[ext_resource type="SpriteFrames" uid="uid://byx7physf15t1" path="res://Assets/Buildings/Distillery_Barley2.ase_layer" id="4_l8svt"]
-[ext_resource type="SpriteFrames" uid="uid://7xlts4cc7svl" path="res://Assets/Buildings/Distillery_BarleyGrape.ase_layer" id="5_sw1js"]
-[ext_resource type="SpriteFrames" uid="uid://m1lihhf0fuc" path="res://Assets/Buildings/Distillery_Ale.ase_layer" id="6_k0mrv"]
-[ext_resource type="SpriteFrames" uid="uid://cmusy6085njcb" path="res://Assets/Buildings/Distillery_Wine.ase_layer" id="7_yyox5"]
-[ext_resource type="SpriteFrames" uid="uid://b7nm37hs3jfxp" path="res://Assets/Buildings/Distillery_Base.ase_layer" id="10_3pq8m"]
+[ext_resource type="SpriteFrames" uid="uid://chxmxy3ldsjce" path="res://Assets/Buildings/Distillery.aseprite" id="3_cx8p1"]
 
 [node name="Distillery" unique_id=1508941475 instance=ExtResource("1_ojojo")]
 script = ExtResource("2_w28ql")
@@ -17,30 +12,4 @@ Size = Vector2(2, 1)
 unique_name_in_owner = true
 
 [node name="BaseAnimatedSprite" parent="." index="1" unique_id=1231940941]
-sprite_frames = ExtResource("10_3pq8m")
-animation = &"Idle"
-
-[node name="Barely2AnimatedSprite" type="AnimatedSprite2D" parent="." index="2" unique_id=1437865222]
-unique_name_in_owner = true
-sprite_frames = ExtResource("4_l8svt")
-animation = &"Idle"
-
-[node name="BarelyAnimatedSprite" type="AnimatedSprite2D" parent="." index="3" unique_id=36527528]
-unique_name_in_owner = true
-sprite_frames = ExtResource("3_e1odu")
-animation = &"Idle"
-
-[node name="GrapeAnimatedSprite" type="AnimatedSprite2D" parent="." index="4" unique_id=1843626527]
-unique_name_in_owner = true
-sprite_frames = ExtResource("5_sw1js")
-animation = &"Idle"
-
-[node name="AleAnimatedSprite" type="AnimatedSprite2D" parent="." index="5" unique_id=1886393979]
-unique_name_in_owner = true
-sprite_frames = ExtResource("6_k0mrv")
-animation = &"Idle"
-
-[node name="WineAnimatedSprite" type="AnimatedSprite2D" parent="." index="6" unique_id=1851371854]
-unique_name_in_owner = true
-sprite_frames = ExtResource("7_yyox5")
-animation = &"Idle"
+sprite_frames = ExtResource("3_cx8p1")

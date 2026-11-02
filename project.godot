@@ -16,11 +16,13 @@ config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 
 [autoload]
 
+Products="*uid://dyoitnnihw44k"
+Buildings="*uid://byk7j8j8s267"
 DayInfo="*uid://dwb5unstn3qab"
 PlayerData="*res://Global Scripts/PlayerData.tscn"
-ScreenManager="*uid://bcijc7biouvwl"
 PlacementData="*uid://dno6paarnvbhj"
 AudioManager="*uid://b8ttfjfj2ascj"
+ScreenManager="*uid://bqngt2dwvuvoq"
 
 [display]
 

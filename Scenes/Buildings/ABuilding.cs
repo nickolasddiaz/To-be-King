@@ -1,18 +1,39 @@
-using System;
+using System.Collections.Generic;
 using Godot;
+
+public class Recipe
+{
+    public ProductType[] input;
+    public ProductType output;
+
+    public float timeProduce;
+
+    public Recipe(ProductType[] input, ProductType output, float timeProduce)
+    {
+        this.input = input;
+        this.output = output;
+        this.timeProduce = timeProduce;
+    }
+}
 
 public abstract partial class ABuilding : Node2D
 {
-    // Shared properties that every building MUST define in the Inspector
     [Export]
     public int Cost { get; set; } = 100;
 
     [Export]
     public Vector2 Size { get; set; } = new Vector2(1, 1);
 
-    public AnimatedSprite2D baseFrames;
-
     public virtual BuildingType buildingType { get; set; }
+
+    public Recipe[] recipes;
+
+    public Queue<ProductType> InputInventory = new();
+    public ProductType? outputInventory;
+
+    public int lockedRecipeIndex = -1;
+
+    public AnimatedSprite2D baseFrames;
 
     public const float BUILDINGUNITSIZE = 32.0f;
 
@@ -28,40 +49,61 @@ public abstract partial class ABuilding : Node2D
         baseFrames = GetNode<AnimatedSprite2D>("%BaseAnimatedSprite");
     }
 
-    public override void _Process(double delta)
-    {
-        // Shared frame processing can go here
-    }
-
     public virtual void Interact(Player player)
     {
         OnInteract();
     }
 
-    protected ImageTexture helperGetTexture2D(Texture2D[] texture)
+    public void drawProducts(Vector2 pos)
     {
-        Image combinedImg = Image.CreateEmpty(
-            (int)(Size.X * BUILDINGUNITSIZE),
-            (int)(Size.Y * BUILDINGUNITSIZE),
-            false,
-            Image.Format.Rgba8
-        );
-
-        Image GetSubImage(Texture2D tex)
+        float y_offset = 0;
+        foreach (var product in InputInventory)
         {
-            Image fullImg = tex.GetImage();
-            if (tex is AtlasTexture atlasTex)
+            var icon = Products.Instance.data[product].icon;
+
+            Vector2 drawPos = pos + new Vector2(0, y_offset);
+
+            DrawTexture(icon, drawPos);
+
+            y_offset += icon.GetSize().Y + 5; // 5px padding
+        }
+    }
+
+    public void interactWithPlayer()
+    {
+        var player = PlayerData.Instance;
+
+        if (outputInventory != null && player.isInventoryNotFull())
+        {
+            player.inventory.Enqueue(outputInventory.Value);
+            outputInventory = null;
+        }
+
+        if (lockedRecipeIndex == -1 && player.inventory.Count > 0)
+        {
+            for (int index = 0; index < recipes.Length; index++)
             {
-                return fullImg.GetRegion((Rect2I)atlasTex.Region);
+                var recipe = recipes[index];
+                if (recipe.input[0] == player.inventory.Peek())
+                {
+                    lockedRecipeIndex = index;
+                    break;
+                }
             }
-            return fullImg;
         }
 
-        foreach (var tex in texture)
+        if (lockedRecipeIndex == -1)
         {
-            Image img = GetSubImage(tex);
-            combinedImg.BlendRect(img, new Rect2I(Vector2I.Zero, img.GetSize()), Vector2I.Zero);
+            return;
         }
-        return ImageTexture.CreateFromImage(combinedImg);
+
+        while (
+            player.inventory.Count > 0
+            && InputInventory.Count == recipes[lockedRecipeIndex].input.Length
+            && recipes[lockedRecipeIndex].input[InputInventory.Count] == player.inventory.Peek()
+        )
+        {
+            InputInventory.Enqueue(player.inventory.Dequeue());
+        }
     }
 }

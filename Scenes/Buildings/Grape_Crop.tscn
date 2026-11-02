@@ -9,4 +9,4 @@ script = ExtResource("2_et2yn")
 
 [node name="CropAnimatedSprite" parent="." index="1" unique_id=1236995356]
 sprite_frames = ExtResource("3_fre31")
-animation = &"Stage_1"
+animation = &"Stage_Final"

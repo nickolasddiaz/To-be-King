@@ -1,7 +1,7 @@
 [remap]
 
-importer="aseprite_wizard.plugin.spriteframes-split"
-type="PackedDataContainer"
+importer="aseprite_wizard.plugin.spriteframes"
+type="SpriteFrames"
 uid="uid://chxmxy3ldsjce"
 path="res://.godot/imported/Distillery.aseprite-b9a6fcc88040411884d81bf308d4d577.res"
 
@@ -19,4 +19,3 @@ sheet/sheet_columns=12
 sheet/frame_padding=0
 sheet/scale=1
 animation/round_fps=true
-output/layers_resources_folder=""

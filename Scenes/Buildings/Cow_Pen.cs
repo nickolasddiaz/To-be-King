@@ -5,7 +5,17 @@ public partial class Cow_Pen : APen
 {
     public new BuildingType buildingType = BuildingType.Cow_Pen;
 
-    public override void _Ready() { }
+    public override void _Ready()
+    {
+        recipes =
+        [
+            new Recipe(
+                [ProductType.Barley, ProductType.Barley, ProductType.Barley],
+                ProductType.Milk,
+                20f
+            ),
+        ];
+    }
 
     public override void _Process(double delta) { }
 }

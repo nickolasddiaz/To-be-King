@@ -1,6 +1,6 @@
 # [To be King](https://github.com/nickolasddiaz/To-be-King)
 
-Game Jam/Expo Project Florida Poly Spring 2026
+Game Jam/Expo Project Florida Poly Fall 2026
 
 ## Tool Used
 

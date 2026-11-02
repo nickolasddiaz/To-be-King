@@ -4,7 +4,6 @@
 [ext_resource type="SpriteFrames" uid="uid://dane0ocdlrjkg" path="res://Assets/Buildings/Crop_Soil.ase_layer" id="2_87s68"]
 
 [node name="ACrop" unique_id=1508941475 instance=ExtResource("1_87s68")]
-scale = Vector2(1, 1)
 
 [node name="BaseAnimatedSprite" parent="." index="0" unique_id=1231940941]
 sprite_frames = ExtResource("2_87s68")

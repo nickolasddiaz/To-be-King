@@ -3,12 +3,12 @@
 importer="aseprite_wizard.plugin.spriteframes"
 type="SpriteFrames"
 uid="uid://dm2tpvqby862"
-path="res://.godot/imported/spr_productIcons.aseprite-431dbdb14380cad71ad00d31e52e483d.res"
+path="res://.godot/imported/ProductLogos.aseprite-d505d557fb1146ecf50e10c7f2390c56.res"
 
 [deps]
 
-source_file="res://Assets/Icons/spr_productIcons.aseprite"
-dest_files=["res://.godot/imported/spr_productIcons.aseprite-431dbdb14380cad71ad00d31e52e483d.res"]
+source_file="res://Assets/Icons/ProductLogos.aseprite"
+dest_files=["res://.godot/imported/ProductLogos.aseprite-d505d557fb1146ecf50e10c7f2390c56.res"]
 
 [params]
 

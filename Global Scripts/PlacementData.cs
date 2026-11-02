@@ -21,7 +21,7 @@ public partial class PlacementData : Node
 
     public void selectBuilding(BuildingType buildingType)
     {
-        var build = PlayerData.Instance.Buildings[buildingType];
+        var build = Buildings.Instance.data[buildingType];
         PlacementEnabled = true;
         PlacementTexture = build.PlacementTexture;
         buildingcost = build.Cost;

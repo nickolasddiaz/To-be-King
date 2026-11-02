@@ -12,16 +12,14 @@ public partial class ProductScreen : Control
 
     public override void _Ready()
     {
-        PlayerData.Instance.productScreen = this;
-
         hBoxContainer = GetNode<HBoxContainer>("%HBoxContainer");
         timeLabel = GetNode<Label>("%Time");
 
-        foreach (var (product, texture) in PlayerData.Instance.productIconsDict)
+        foreach (var (product, data) in Products.Instance.data)
         {
             ProductItem sceneInstance = (ProductItem)product_item.Instantiate();
-            sceneInstance.setTexture(texture);
-            sceneInstance.setText(PlayerData.Instance.productAmounts[product].ToString());
+            sceneInstance.setTexture(data.logo);
+            sceneInstance.setText(data.amount.ToString());
             productContainers[product] = sceneInstance;
             hBoxContainer.AddChild(sceneInstance);
         }
@@ -33,7 +31,7 @@ public partial class ProductScreen : Control
     {
         foreach (var (product, sceneInstance) in productContainers)
         {
-            sceneInstance.setText(PlayerData.Instance.productAmounts[product].ToString());
+            sceneInstance.setText(Products.Instance.data[product].amount.ToString());
         }
     }
 

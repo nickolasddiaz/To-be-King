@@ -12,4 +12,4 @@ animation = &"Stage_1"
 
 [node name="CropAnimatedSprite" parent="." index="1" unique_id=1236995356]
 sprite_frames = ExtResource("3_n6jde")
-animation = &"Stage_1"
+animation = &"Stage_Final"

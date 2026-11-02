@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://byk7j8j8s267"]
+
+[ext_resource type="Script" uid="uid://ugq4wgv6qjge" path="res://Global Scripts/Buildings.cs" id="1_2jte3"]
+[ext_resource type="SpriteFrames" uid="uid://cwkefxegcen2r" path="res://Assets/Icons/BuildingIcons.aseprite" id="2_eoj6q"]
+
+[node name="Buildings" type="Node" unique_id=1068818959]
+script = ExtResource("1_2jte3")
+buildingIcons = ExtResource("2_eoj6q")

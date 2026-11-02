@@ -23,10 +23,10 @@ public partial class TaskSreen : Control
             child.QueueFree();
         }
 
-        foreach (var (product, texture) in PlayerData.Instance.productIconsDict)
+        foreach (var (product, data) in Products.Instance.data)
         {
             var sceneInstance = (NextTaskScreenBox)next_task_screen_box.Instantiate();
-            sceneInstance.setTexture(texture);
+            sceneInstance.setTexture(data.logo);
             int productCount = 0;
             if (DayInfo.Instance.Days[0].ProductNeeds.TryGetValue(product, out int value))
             {
@@ -48,22 +48,14 @@ public partial class TaskSreen : Control
     {
         foreach ((ProductType product, NextTaskScreenBox sceneInstance) in productItems)
         {
-            sceneInstance.setText($"{product}: {PlayerData.Instance.productAmounts[product]}");
+            sceneInstance.setText($"{product}: {Products.Instance.data[product].amount}");
         }
     }
 
     private void OnButtonPressed()
     {
-        ScreenManager.Instance.SwitchScreenPath(NextPath, false);
-        foreach (ProductType product in PlayerData.Instance.productIconsDict.Keys)
-        {
-            if (!PlayerData.Instance.productAmounts.ContainsKey(product))
-            {
-                PlayerData.Instance.productAmounts[product] = 0;
-            }
-        }
-
         PlayerData.Instance.newDay();
         updateProductAmounts();
+        ScreenManager.Instance.SwitchScreenPath(NextPath, false);
     }
 }
