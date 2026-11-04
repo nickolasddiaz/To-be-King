@@ -3,41 +3,58 @@
 [ext_resource type="Script" uid="uid://dwd4ou55bd1cf" path="res://Scenes/Placement Screen/BuildingUi.cs" id="1_mlrl1"]
 [ext_resource type="PackedScene" uid="uid://tn1ugyflvcsy" path="res://Scenes/Placement Screen/BuildingUiButton.tscn" id="2_bg2m7"]
 
-[node name="BuildingUi" type="Control" unique_id=2071923931]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 42.0
-offset_top = -2.0
-offset_right = 42.0
-offset_bottom = -2.0
+[node name="BuildingUi" type="CanvasLayer" unique_id=1165081034]
 script = ExtResource("1_mlrl1")
 BuildingUIButton = ExtResource("2_bg2m7")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=269500158]
-layout_mode = 0
-offset_left = 464.0
-offset_top = 2.0
-offset_right = 706.0
-offset_bottom = 650.0
-scale = Vector2(0.68, 0.52000016)
-color = Color(0.6681502, 0.4348295, 0.6605938, 1)
-metadata/_edit_use_anchors_ = true
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=304407865]
+custom_minimum_size = Vector2(240, 0)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+grow_horizontal = 0
+grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="." unique_id=1461825439]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=442179431]
+custom_minimum_size = Vector2(240, 540)
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1512042290]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1850269665]
+layout_mode = 2
+offset_transform_position = Vector2(0, 30)
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Move" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=798435497]
+layout_mode = 2
+text = "Move"
+
+[node name="Delete" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=84113447]
+layout_mode = 2
+text = "Delete"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=708268801]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=226744523]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 491.0
-offset_top = 116.0
-offset_right = 727.0
-offset_bottom = 764.0
-scale = Vector2(1.0456212, 0.64774823)
+layout_mode = 2
+size_flags_horizontal = 6
 columns = 2
 
-[node name="Continue" type="Button" parent="." unique_id=1540257885]
+[node name="Continue" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1288907636]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 508.0
-offset_top = 299.0
-offset_right = 587.0
-offset_bottom = 330.0
-text = "Continue"
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Delete"
+icon_alignment = 1

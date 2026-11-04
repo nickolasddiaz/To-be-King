@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public partial class BuildingUi : Control
+public partial class BuildingUi : CanvasLayer
 {
     private GridContainer inventoryContainer;
 
@@ -43,6 +43,6 @@ public partial class BuildingUi : Control
 
     private void OnButtonPressed()
     {
-        PlayerData.Instance.placementToGameplayTransition();
+        // PlayerData.Instance.placementToGameplayTransition();
     }
 }

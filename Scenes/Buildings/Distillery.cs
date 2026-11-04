@@ -3,9 +3,7 @@ using Godot;
 
 public partial class Distillery : AMachine
 {
-    public new BuildingType buildingType = BuildingType.Distillery;
-
-    public Vector2 inputPosition = new Vector2(0, 0);
+    public override BuildingType buildingType { get; set; } = BuildingType.Distillery;
 
     public override void _Ready()
     {
@@ -22,13 +20,12 @@ public partial class Distillery : AMachine
                 20f
             ),
         ];
-        InputInventory.Enqueue(ProductType.Barley);
+        // InputInventory.Enqueue(ProductType.Barley);
+        // InputInventory.Enqueue(ProductType.Barley);
+        // InputInventory.Enqueue(ProductType.Barley);
+
+        // outputInventory = ProductType.Ale;
     }
 
     public override void _Process(double delta) { }
-
-    public override void _Draw()
-    {
-        drawProducts(inputPosition);
-    }
 }

@@ -21,23 +21,21 @@ public partial class EndOfDayScreen : Control
 
         title = GetNode<Label>("%Title");
         label = GetNode<Label>("%Label");
-
-        PlayerData.Instance.endOfDayScreen = this;
     }
 
     public void updateEndofDay()
     {
-        title.Text = $"End of day results:{PlayerData.Instance.day + 1}";
+        title.Text = $"End of day results:{DayInfo.Instance.formatDay()}";
 
         if (Products.Instance.checkIfProductsAreSatisfied())
         {
-            if (PlayerData.Instance.day == DayInfo.Instance.lastday())
+            if (DayInfo.Instance.islastday())
             {
                 title.Text = "Congrats you beat the Game";
             }
 
+            DayInfo.Instance.day++;
             label.Text = "You passed this day: going to the next day";
-            PlayerData.Instance.day++;
         }
         else
         {
@@ -47,7 +45,7 @@ public partial class EndOfDayScreen : Control
 
     private void NextButtonPressed()
     {
-        if (PlayerData.Instance.day == DayInfo.Instance.lastday())
+        if (DayInfo.Instance.islastday() && Products.Instance.checkIfProductsAreSatisfied())
         {
             ScreenManager.Instance.SwitchScreenPath(EndGamePath, false);
         }

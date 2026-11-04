@@ -4,5 +4,8 @@
 
 [node name="AMachine" unique_id=1508941475 instance=ExtResource("1_gm0ht")]
 
+[node name="BaseAnimatedSprite" parent="." index="0" unique_id=1231940941]
+show_behind_parent = true
+
 [node name="Area2D" parent="." index="1" unique_id=98190789]
 scale = Vector2(2, 1)

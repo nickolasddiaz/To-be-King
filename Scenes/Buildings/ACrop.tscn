@@ -6,8 +6,10 @@
 [node name="ACrop" unique_id=1508941475 instance=ExtResource("1_87s68")]
 
 [node name="BaseAnimatedSprite" parent="." index="0" unique_id=1231940941]
+show_behind_parent = true
 sprite_frames = ExtResource("2_87s68")
 animation = &"Stage_Base"
 
 [node name="CropAnimatedSprite" type="AnimatedSprite2D" parent="." index="1" unique_id=1236995356]
 unique_name_in_owner = true
+show_behind_parent = true

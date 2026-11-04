@@ -15,13 +15,18 @@ public partial class PlacementManager : Node2D
 
     private bool mouseingrid;
 
+    private const int XSTART = 3;
+    private const int XEND = 24;
+    private const int YSTART = 3;
+    private const int YEND = 14;
+
     //So we need a dictionary because we need to know WHAT we are moving IF we are actually going to implement moving/deleting
     private Dictionary<Vector2I, Node2D> occupiedcells = new Dictionary<Vector2I, Node2D>();
 
     public override void _Ready()
     {
         PlacementData.Instance.placementManager = this;
-        GridPlacement = GetNode<TileMapLayer>("GridPlacement");
+        GridPlacement = GetNode<TileMapLayer>("%GridPlacement");
     }
 
     public override void _Process(double delta)
@@ -112,7 +117,7 @@ public partial class PlacementManager : Node2D
     private static bool IsCellInsideGrid(Vector2I cell)
     {
         //so this is my old code...basically outlines the boundaries
-        return cell.X >= 2 && cell.X < 16 && cell.Y >= 2 && cell.Y < 10;
+        return cell.X >= XSTART && cell.X < XEND && cell.Y >= YSTART && cell.Y < YEND;
     }
 
     private Vector2I GetMouseCell()
@@ -169,21 +174,21 @@ public partial class PlacementManager : Node2D
     public void draw_grid()
     {
         //Doing our vertical lines
-        for (int x = 2; x <= 16; x++)
+        for (int x = XSTART; x <= XEND; x++)
         {
             DrawLine(
-                new Vector2(x * cellsize, 2 * cellsize),
-                new Vector2(x * cellsize, 10 * cellsize),
+                new Vector2(x * cellsize, YSTART * cellsize),
+                new Vector2(x * cellsize, YEND * cellsize),
                 GridColor
             );
         }
 
         //Horizontal line drawing
-        for (int y = 2; y <= 10; y++)
+        for (int y = YSTART; y <= YEND; y++)
         {
             DrawLine(
-                new Vector2(2 * cellsize, y * cellsize),
-                new Vector2(16 * cellsize, y * cellsize),
+                new Vector2(XSTART * cellsize, y * cellsize),
+                new Vector2(XEND * cellsize, y * cellsize),
                 GridColor
             );
         }

@@ -3,7 +3,7 @@ using Godot;
 
 public partial class Cabbage_Crop : ACrop
 {
-    public new BuildingType buildingType = BuildingType.Cabbage_Crop;
+    public override BuildingType buildingType { get; set; } = BuildingType.Cabbage_Crop;
 
     public override void _Ready()
     {

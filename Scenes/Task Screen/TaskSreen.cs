@@ -54,7 +54,7 @@ public partial class TaskSreen : Control
 
     private void OnButtonPressed()
     {
-        PlayerData.Instance.newDay();
+        // PlayerData.Instance.newDay();
         updateProductAmounts();
         ScreenManager.Instance.SwitchScreenPath(NextPath, false);
     }

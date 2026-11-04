@@ -6,6 +6,7 @@
 [node name="APen" unique_id=1508941475 instance=ExtResource("1_vnge7")]
 
 [node name="BaseAnimatedSprite" parent="." index="0" unique_id=1231940941]
+show_behind_parent = true
 sprite_frames = ExtResource("2_5h7jh")
 animation = &"Idle"
 

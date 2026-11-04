@@ -94,8 +94,8 @@ columns = 5
 [node name="Continue" type="Button" parent="." unique_id=623676944]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 162.0
-offset_top = 528.0
-offset_right = 962.0
-offset_bottom = 559.0
+offset_left = 82.0
+offset_top = 438.0
+offset_right = 882.0
+offset_bottom = 469.0
 text = "Continue"

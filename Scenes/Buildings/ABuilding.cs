@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Godot;
 
 public class Recipe
@@ -31,10 +32,12 @@ public abstract partial class ABuilding : Node2D
     public Queue<ProductType> InputInventory = new();
     public ProductType? outputInventory;
 
+    public bool isProducing;
+
     public int lockedRecipeIndex = -1;
 
     public AnimatedSprite2D baseFrames;
-
+    private Node2D drawingIcons;
     public const float BUILDINGUNITSIZE = 32.0f;
 
     public virtual ImageTexture getImageTexture()
@@ -54,8 +57,18 @@ public abstract partial class ABuilding : Node2D
         OnInteract();
     }
 
-    public void drawProducts(Vector2 pos)
+    public void drawOutputInventory(Vector2 pos)
     {
+        if (outputInventory != null)
+        {
+            var icon = Products.Instance.data[outputInventory.Value].icon;
+            DrawTexture(icon, pos);
+        }
+    }
+
+    public void drawInputInventory(Vector2 pos)
+    {
+        // make sure the animation player settings "show behind parent is true"
         float y_offset = 0;
         foreach (var product in InputInventory)
         {
@@ -65,11 +78,11 @@ public abstract partial class ABuilding : Node2D
 
             DrawTexture(icon, drawPos);
 
-            y_offset += icon.GetSize().Y + 5; // 5px padding
+            y_offset += 5; // 5px padding
         }
     }
 
-    public void interactWithPlayer()
+    public async Task interactWithPlayerAsync()
     {
         var player = PlayerData.Instance;
 
@@ -99,11 +112,28 @@ public abstract partial class ABuilding : Node2D
 
         while (
             player.inventory.Count > 0
-            && InputInventory.Count == recipes[lockedRecipeIndex].input.Length
+            && InputInventory.Count != recipes[lockedRecipeIndex].input.Length
             && recipes[lockedRecipeIndex].input[InputInventory.Count] == player.inventory.Peek()
         )
         {
             InputInventory.Enqueue(player.inventory.Dequeue());
+        }
+
+        if (
+            !isProducing
+            && InputInventory.Count != recipes[lockedRecipeIndex].input.Length
+            && outputInventory == null
+        )
+        {
+            float timeToAwait = recipes[lockedRecipeIndex].timeProduce;
+            isProducing = true;
+
+            await ToSignal(GetTree().CreateTimer(timeToAwait), SceneTreeTimer.SignalName.Timeout);
+
+            isProducing = false;
+            outputInventory = recipes[lockedRecipeIndex].output;
+            InputInventory.Clear();
+            lockedRecipeIndex = -1;
         }
     }
 }

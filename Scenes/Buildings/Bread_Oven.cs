@@ -3,7 +3,7 @@ using Godot;
 
 public partial class Bread_Oven : AMachine
 {
-    public new BuildingType buildingType = BuildingType.Bread_Oven;
+    public override BuildingType buildingType { get; set; } = BuildingType.Bread_Oven;
 
     public override void _Ready()
     {

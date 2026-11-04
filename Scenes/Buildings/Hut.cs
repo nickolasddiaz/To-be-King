@@ -3,7 +3,7 @@ using Godot;
 
 public partial class Hut : ABuilding
 {
-    public new BuildingType buildingType = BuildingType.Hut;
+    public override BuildingType buildingType { get; set; } = BuildingType.Hut;
 
     public override void _Ready() { }
 

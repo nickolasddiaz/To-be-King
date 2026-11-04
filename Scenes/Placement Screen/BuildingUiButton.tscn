@@ -2,41 +2,55 @@
 
 [ext_resource type="Script" uid="uid://cxvvki4340i4p" path="res://Scenes/Placement Screen/BuildingUiButton.cs" id="1_c5yud"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_e5jvv"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_c5yud"]
 line_spacing = 1.0
 font_size = 8
 
-[node name="building_ui_button" type="Control" unique_id=1382138230]
-custom_minimum_size = Vector2(64, 64)
+[node name="BuildingUiButton" type="Control" unique_id=1382138230]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 75)
+propagate_maximum_size = true
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -32.0
-offset_right = -1056.0
-offset_bottom = -552.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -270.0
+offset_right = -416.0
+offset_bottom = -190.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 script = ExtResource("1_c5yud")
 
-[node name="Label" type="Label" parent="." unique_id=2014708918]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1831535115]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -24.0
+offset_right = 20.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1216280930]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = -43.0
-offset_top = 39.0
-offset_right = 86.0
-offset_bottom = 62.0
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+icon = SubResource("PlaceholderTexture2D_e5jvv")
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=2014708918]
+unique_name_in_owner = true
+layout_mode = 2
 text = "Text"
 label_settings = SubResource("LabelSettings_c5yud")
 horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="." unique_id=1216280930]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 33.0
-offset_bottom = 33.0

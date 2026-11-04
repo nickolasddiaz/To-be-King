@@ -49,15 +49,22 @@ public partial class DayInfo : Node
     public string JsonDayFile { get; set; }
     public List<Day> Days;
 
+    public int day;
+
     public override void _Ready()
     {
         Instance = this; // setting DayInfo static
         LoadDayInfo(JsonDayFile);
     }
 
-    public int lastday()
+    public bool islastday()
     {
-        return Days.Count;
+        return day == Days.Count;
+    }
+
+    public string formatDay()
+    {
+        return $"Day: ${day + 1}";
     }
 
     private void LoadDayInfo(string filePath)

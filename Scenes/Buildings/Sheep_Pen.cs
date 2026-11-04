@@ -3,7 +3,7 @@ using Godot;
 
 public partial class Sheep_Pen : APen
 {
-    public new BuildingType buildingType = BuildingType.Sheep_Pen;
+    public override BuildingType buildingType { get; set; } = BuildingType.Sheep_Pen;
 
     public override void _Ready()
     {

@@ -7,17 +7,11 @@
 tile_size = Vector2i(32, 32)
 
 [node name="PlacementManager" type="Node2D" unique_id=1447108591]
+texture_filter = 1
 script = ExtResource("1_42yw4")
 
 [node name="GridPlacement" type="TileMapLayer" parent="." unique_id=1544473667]
+unique_name_in_owner = true
 tile_set = SubResource("TileSet_a5at1")
 
-[node name="BuildingUi" parent="." unique_id=2071923931 instance=ExtResource("4_2bw8i")]
-offset_left = 150.00002
-offset_top = -1.0
-offset_right = 150.00002
-offset_bottom = -1.0
-rotation = -0.00014008417
-scale = Vector2(0.78, 1.04)
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="BuildingUi" parent="." unique_id=334281974 instance=ExtResource("4_2bw8i")]
