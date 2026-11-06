@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public partial class StartGameScreen : Control
+public partial class StartGameScreen : CanvasLayer
 {
     [Export(PropertyHint.File, "*.tscn")]
     public string CreditsPath { get; set; } = string.Empty;

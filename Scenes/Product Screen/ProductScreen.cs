@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class ProductScreen : Control
+public partial class ProductScreen : CanvasLayer
 {
     private HBoxContainer hBoxContainer;
 
@@ -18,10 +18,10 @@ public partial class ProductScreen : Control
         foreach (var (product, data) in Products.Instance.data)
         {
             ProductItem sceneInstance = (ProductItem)product_item.Instantiate();
+            hBoxContainer.AddChild(sceneInstance);
             sceneInstance.setTexture(data.logo);
             sceneInstance.setText(data.amount.ToString());
             productContainers[product] = sceneInstance;
-            hBoxContainer.AddChild(sceneInstance);
         }
 
         setTimeText("9:99");

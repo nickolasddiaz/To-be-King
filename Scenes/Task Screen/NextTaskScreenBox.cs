@@ -1,41 +1,24 @@
 using Godot;
 
-public partial class NextTaskScreenBox : ColorRect
+public partial class NextTaskScreenBox : Control
 {
     [Export(PropertyHint.File, "*.tscn")]
-    private Sprite2D productPic;
-    private Texture2D pendingTexture;
-    private bool hasPendingTexture;
+    private TextureRect productPic;
     private Label productLabel;
-    private string pendingText;
-    private bool hasPendingText;
 
     public override void _Ready()
     {
-        productPic = GetNodeOrNull<Sprite2D>("%Sprite2D");
-        if (productPic != null && hasPendingTexture)
-            productPic.Texture = pendingTexture;
-
-        productLabel = GetNodeOrNull<Label>("%Label");
-        if (productLabel != null && hasPendingText)
-            productLabel.Text = pendingText;
+        productLabel = GetNode<Label>("%Label");
+        productPic = GetNode<TextureRect>("%TextureRect");
     }
 
     public void setTexture(Texture2D pic)
     {
-        pendingTexture = pic;
-        hasPendingTexture = true;
-        productPic ??= GetNodeOrNull<Sprite2D>("%Sprite2D");
-        if (productPic != null)
-            productPic.Texture = pic;
+        productPic.Texture = pic;
     }
 
     public void setText(string text)
     {
-        pendingText = text;
-        hasPendingText = true;
-        productLabel ??= GetNodeOrNull<Label>("%Label");
-        if (productLabel != null)
-            productLabel.Text = text;
+        productLabel.Text = text;
     }
 }

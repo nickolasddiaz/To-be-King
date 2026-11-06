@@ -1,15 +1,14 @@
 using System;
 using Godot;
 
-public partial class CreditsScreen : Control
+public partial class CreditsScreen : CanvasLayer
 {
     [Export(PropertyHint.File, "*.tscn")]
     public string StartPath { get; set; } = string.Empty;
 
     public override void _Ready()
     {
-        var credits_button = GetNode<Button>("%Back");
-        credits_button.Pressed += BackOnButtonPressed;
+        GetNode<Button>("%Back").Pressed += BackOnButtonPressed;
     }
 
     private void BackOnButtonPressed()

@@ -8,7 +8,8 @@ script = ExtResource("1_mlrl1")
 BuildingUIButton = ExtResource("2_bg2m7")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=304407865]
-custom_minimum_size = Vector2(240, 0)
+custom_minimum_size = Vector2(200, 540)
+propagate_maximum_size = false
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -16,9 +17,9 @@ anchor_bottom = 1.0
 offset_left = -150.0
 grow_horizontal = 0
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=442179431]
-custom_minimum_size = Vector2(240, 540)
 layout_mode = 2
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 40
@@ -56,5 +57,5 @@ columns = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Delete"
+text = "Continue"
 icon_alignment = 1

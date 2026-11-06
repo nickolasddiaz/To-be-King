@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class TaskSreen : Control
+public partial class TaskScreen : CanvasLayer
 {
     private GridContainer inventoryContainer;
 
@@ -26,6 +26,7 @@ public partial class TaskSreen : Control
         foreach (var (product, data) in Products.Instance.data)
         {
             var sceneInstance = (NextTaskScreenBox)next_task_screen_box.Instantiate();
+            inventoryContainer.AddChild(sceneInstance);
             sceneInstance.setTexture(data.logo);
             int productCount = 0;
             if (DayInfo.Instance.Days[0].ProductNeeds.TryGetValue(product, out int value))
@@ -38,7 +39,6 @@ public partial class TaskSreen : Control
             }
             sceneInstance.setText($"{product}: {productCount}");
             productItems[product] = sceneInstance;
-            inventoryContainer.AddChild(sceneInstance);
         }
 
         continue_button.Pressed += OnButtonPressed;

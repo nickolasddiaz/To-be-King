@@ -1,8 +1,6 @@
-using System;
-using System.Linq;
 using Godot;
 
-public partial class EndOfDayScreen : Control
+public partial class EndOfDayScreen : CanvasLayer
 {
     private Button next_button;
     private Label title;

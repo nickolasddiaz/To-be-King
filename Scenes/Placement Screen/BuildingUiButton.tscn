@@ -1,12 +1,8 @@
 [gd_scene format=3 uid="uid://tn1ugyflvcsy"]
 
 [ext_resource type="Script" uid="uid://cxvvki4340i4p" path="res://Scenes/Placement Screen/BuildingUiButton.cs" id="1_c5yud"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_e5jvv"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_c5yud"]
-line_spacing = 1.0
-font_size = 8
+[ext_resource type="Texture2D" uid="uid://sjn1xf5ij663" path="res://Assets/Resources/placeholder_texture_2d.tres" id="2_8eups"]
+[ext_resource type="LabelSettings" uid="uid://cnpf6pd4ljpui" path="res://Assets/Resources/label_settings.tres" id="3_upqsp"]
 
 [node name="BuildingUiButton" type="Control" unique_id=1382138230]
 texture_filter = 1
@@ -46,11 +42,11 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 4
-icon = SubResource("PlaceholderTexture2D_e5jvv")
+icon = ExtResource("2_8eups")
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=2014708918]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Text"
-label_settings = SubResource("LabelSettings_c5yud")
+label_settings = ExtResource("3_upqsp")
 horizontal_alignment = 1

@@ -11,11 +11,7 @@ public partial class ScreenManager : Node
     public override void _Ready()
     {
         Instance = this;
-
-        if (_screenContainer == null)
-        {
-            _screenContainer = this;
-        }
+        _screenContainer = this;
 
         _currentScreen = GetTree().CurrentScene;
     }
@@ -37,11 +33,8 @@ public partial class ScreenManager : Node
 
         _currentScreen = null;
 
-        if (nextScreenPacked != null)
-        {
-            _currentScreen = nextScreenPacked.Instantiate();
-            (_screenContainer ?? this).AddChild(_currentScreen);
-        }
+        _currentScreen = nextScreenPacked.Instantiate();
+        _screenContainer.AddChild(_currentScreen);
     }
 
     public void SwitchScreenPath(string nextScreenPacked, bool deleteOld)
@@ -53,7 +46,7 @@ public partial class ScreenManager : Node
         }
         else
         {
-            GD.PrintErr($"Failed to load screen: {nextScreenPacked}");
+            throw new InvalidOperationException($"Failed to load screen: {nextScreenPacked}");
         }
     }
 }

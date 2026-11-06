@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public partial class TutorialScreen : Control
+public partial class TutorialScreen : CanvasLayer
 {
     [Export(PropertyHint.File, "*.tscn")]
     public string NextPath { get; set; } = string.Empty;

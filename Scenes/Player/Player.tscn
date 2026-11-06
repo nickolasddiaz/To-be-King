@@ -129,7 +129,7 @@ metadata/imported_via_aw = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0u86"]
 
-[node name="player" type="CharacterBody2D" unique_id=1591162580 node_paths=PackedStringArray("myAnim")]
+[node name="Player" type="CharacterBody2D" unique_id=1591162580 node_paths=PackedStringArray("myAnim")]
 script = ExtResource("1_1jqjg")
 myAnim = NodePath("SprPlayer")
 

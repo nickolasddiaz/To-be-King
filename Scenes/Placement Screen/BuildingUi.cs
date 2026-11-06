@@ -14,7 +14,6 @@ public partial class BuildingUi : CanvasLayer
     public override void _Ready()
     {
         inventoryContainer = GetNode<GridContainer>("%GridContainer");
-        PlacementData.Instance.buildingContainer = inventoryContainer;
         GetNode<Button>("%Continue").Pressed += OnButtonPressed;
 
         foreach (Node child in inventoryContainer.GetChildren())
@@ -24,19 +23,18 @@ public partial class BuildingUi : CanvasLayer
 
         foreach (var (buildingType, buildData) in Buildings.Instance.data)
         {
-            // Fetch cost/texture from a lightweight data source instead of instantiating the whole scene tree
             int cost = buildData.Cost;
             string iconName = buildingType.ToString();
 
             Texture2D texture = buildData.IconTexture;
 
             BuildingUiButton sceneInstance = BuildingUIButton.Instantiate<BuildingUiButton>();
-            sceneInstance.setText($"{cost}\n{buildingType}");
-            sceneInstance.setTexture(texture);
-            sceneInstance.setBuildingType(buildingType);
             inventoryContainer.AddChild(sceneInstance);
 
-            sceneInstance.GetNode<Button>("%Button").Pressed += () =>
+            sceneInstance.setText($"{cost}\n{buildingType}");
+            sceneInstance.setTexture(texture);
+
+            sceneInstance.productPic.Pressed += () =>
                 PlacementData.Instance.selectBuilding(buildingType);
         }
     }

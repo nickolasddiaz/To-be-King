@@ -2,19 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c3bytm0i707im" path="res://Scenes/Start Game Screen/StartGameScreen.cs" id="1_07r4g"]
 
-[node name="StartGameScreen" type="Control" unique_id=9974333]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="StartGameScreen" type="CanvasLayer" unique_id=702427058]
 script = ExtResource("1_07r4g")
 CreditsPath = "uid://b0x1u61gbxdk4"
 NextPath = "uid://clfnb2jidijvj"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=158365572]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,7 +16,6 @@ grow_vertical = 2
 color = Color(0.61180323, 0.762278, 0.95955426, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1410893941]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

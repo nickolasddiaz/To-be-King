@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public partial class EndGameScreen : Control
+public partial class EndGameScreen : CanvasLayer
 {
     [Export(PropertyHint.File, "*.tscn")]
     public string StartPath { get; set; } = string.Empty;
