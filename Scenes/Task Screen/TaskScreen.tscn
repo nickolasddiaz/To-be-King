@@ -9,7 +9,8 @@ font_size = 32
 [node name="NextTask" type="CanvasLayer" unique_id=474302268]
 script = ExtResource("1_xgjmp")
 next_task_screen_box = ExtResource("2_0w4xm")
-NextPath = "uid://bygh0wno1dfkl"
+gamePlayScreen = "uid://bygh0wno1dfkl"
+unlockScreen = "uid://lgnah75ajhoe"
 
 [node name="Background" type="ColorRect" parent="." unique_id=37201072]
 anchors_preset = 15

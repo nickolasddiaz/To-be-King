@@ -11,6 +11,8 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 64.0
 offset_bottom = 64.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_pwxx1")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1599550476]

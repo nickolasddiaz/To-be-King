@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://b0n1jksiswxv2"]
+
+[ext_resource type="Script" uid="uid://lnyuerh54xtv" path="res://Scenes/Pause Menu/PauseMenu.cs" id="1_pojlu"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=1780142748]
+script = ExtResource("1_pojlu")
+startScreen = "uid://dnu7n6siro8m2"
+nextTaskScreen = "uid://dnsq4712uoggw"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1212761417]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.63529414, 0.63529414, 0.63529414, 0.2627451)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=982741690]
+offset_left = 230.0
+offset_top = 70.0
+offset_right = 730.0
+offset_bottom = 470.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=975802679]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1029826066]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=702796381]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1638744633]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Continue On"
+
+[node name="RestartDay" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=320397692]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Restart Day"
+
+[node name="RestartGame" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1826486924]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Restart Game"

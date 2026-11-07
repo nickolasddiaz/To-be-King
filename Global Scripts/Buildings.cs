@@ -24,6 +24,8 @@ public class BuildingData
     public Vector2I Size;
     public bool unlocked;
 
+    public Recipe[] recipes;
+
     public BuildingData(string Path)
     {
         BuildingScene = GD.Load<PackedScene>(Path);
@@ -39,6 +41,7 @@ public class BuildingData
             throw new InvalidOperationException($"Scene root must inherit Building: {Path}");
         }
 
+        recipes = building.recipes;
         Cost = building.Cost;
         Size = (Vector2I)building.Size;
         building.Free();

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bo4n06gm7kdhn"]
+
+[ext_resource type="Texture2D" uid="uid://c7wrtmofcd5i6" path="res://Assets/Icons/UI-Arrow.aseprite" id="1_cyo8j"]
+[ext_resource type="Script" uid="uid://cfeh76a1r7otl" path="res://Scenes/Task Screen/NextTaskScreenBox.cs" id="1_qa8w7"]
+
+[node name="Arrow" type="Control" unique_id=804997916]
+texture_filter = 1
+custom_minimum_size = Vector2(96, 64)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_qa8w7")
+
+[node name="Label" type="Label" parent="." unique_id=1106678905]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 92.0
+offset_bottom = 23.0
+text = "Placeholder"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=229417254]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 0
+offset_top = -9.5
+offset_right = 92.0
+offset_bottom = 82.5
+texture = ExtResource("1_cyo8j")
+expand_mode = 4

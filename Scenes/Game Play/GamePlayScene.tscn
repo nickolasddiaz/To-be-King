@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ca03mc2ql7j5k" path="res://Scenes/Placement Screen/PlacementManager.tscn" id="2_4jtd1"]
 [ext_resource type="PackedScene" uid="uid://dje6pbmde0l6a" path="res://Scenes/Player/Player.tscn" id="2_q0gqs"]
 [ext_resource type="PackedScene" uid="uid://bs5p1r27jbycs" path="res://Scenes/Product Screen/ProductScreen.tscn" id="4_ftlg0"]
+[ext_resource type="PackedScene" uid="uid://b0n1jksiswxv2" path="res://Scenes/Pause Menu/PauseMenu.tscn" id="6_t1rpd"]
 
 [node name="GamePlayScene" type="Node2D" unique_id=370923773]
 texture_filter = 1
@@ -26,3 +27,7 @@ unique_name_in_owner = true
 
 [node name="BuildingPlacementLocation" type="Node2D" parent="." unique_id=1934116455]
 unique_name_in_owner = true
+
+[node name="PauseMenu" parent="." unique_id=1780142748 instance=ExtResource("6_t1rpd")]
+process_mode = 3
+visible = false

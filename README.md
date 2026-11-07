@@ -74,12 +74,18 @@ graph TD;
     A --> C["Story Intro Screen"]
     C --> D["Tutorial Screen"]
     D --> E["Task Screen"]
+    E --> J["Unlock Screen"]
     E --> F["Placement Screen"]
+    J --> F
     F --> G["Game Play"]
     G --> I["End of Day"]
     I --> E
     I --> K["End of Game"]
     K --> A
+    F <--> |Pausing| L["Pause Screen"]
+    G <--> |Pausing| L
+    L --> |Restart Game| A
+    L --> |Restart Day| E
 ```
 
 ### Building Hierarchy
@@ -90,15 +96,14 @@ Using inherited scenes and abstract classes
 graph TD;
     A["ABuilding"] --> B["ACrop"]
     A --> C["AMachine"]
-    A --> D["APen"]
     A --> E["Hut"]
     B --> F["Cabbage Crop"]
     B --> G["Barley Crop"]
     B --> H["Grape Crop"]
     C --> I["Distillery"]
     C --> J["Bread Oven"]
-    D --> K["Sheep Pen"]
-    D --> L["Cow Pen"]
+    C --> K["Sheep Pen"]
+    C --> L["Cow Pen"]
 ```
 
 ## About

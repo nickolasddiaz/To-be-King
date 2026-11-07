@@ -1,13 +1,7 @@
-using System;
-using Godot;
-
-public partial class Cow_Pen : APen
+public partial class Cow_Pen : AMachine
 {
     public override BuildingType buildingType { get; set; } = BuildingType.Cow_Pen;
-
-    public override void _Ready()
-    {
-        recipes =
+    public override Recipe[] recipes =>
         [
             new Recipe(
                 [ProductType.Barley, ProductType.Barley, ProductType.Barley],
@@ -15,7 +9,8 @@ public partial class Cow_Pen : APen
                 20f
             ),
         ];
-    }
+
+    public override void _Ready() { }
 
     public override void _Process(double delta) { }
 }

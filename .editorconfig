@@ -13,6 +13,7 @@ insert_final_newline = true
 # Godot Engine Style Adjustments
 # ==========================================
 
+dotnet_diagnostic.CA1822.severity = none
 dotnet_diagnostic.RCS1139.severity = none
 dotnet_diagnostic.RCS1141.severity = none
 dotnet_diagnostic.RCS1181.severity = none

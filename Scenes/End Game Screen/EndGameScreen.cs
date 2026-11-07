@@ -8,12 +8,7 @@ public partial class EndGameScreen : CanvasLayer
 
     public override void _Ready()
     {
-        var next_button = GetNode<Button>("%Continue");
-        next_button.Pressed += NextButtonPressed;
-    }
-
-    private void NextButtonPressed()
-    {
-        ScreenManager.Instance.SwitchScreenPath(StartPath, false);
+        GetNode<Button>("%Continue").Pressed += () =>
+            ScreenManager.Instance.SwitchScreenPath(StartPath, false);
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -116,7 +115,6 @@ public partial class PlacementManager : Node2D
 
     private static bool IsCellInsideGrid(Vector2I cell)
     {
-        //so this is my old code...basically outlines the boundaries
         return cell.X >= XSTART && cell.X < XEND && cell.Y >= YSTART && cell.Y < YEND;
     }
 

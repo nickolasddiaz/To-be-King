@@ -2,7 +2,6 @@ using Godot;
 
 public partial class NextTaskScreenBox : Control
 {
-    [Export(PropertyHint.File, "*.tscn")]
     private TextureRect productPic;
     private Label productLabel;
 

@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://lgnah75ajhoe"]
+
+[ext_resource type="Script" uid="uid://c3xqdsd2menid" path="res://Scenes/Unlock Screen/UnlockScreen.cs" id="1_l351b"]
+[ext_resource type="PackedScene" uid="uid://cfqqkc536vx5f" path="res://Scenes/Task Screen/NextTaskScreenBox.tscn" id="2_1ug2s"]
+[ext_resource type="PackedScene" uid="uid://bo4n06gm7kdhn" path="res://Scenes/Unlock Screen/Arrow.tscn" id="4_kycfo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l351b"]
+font_size = 32
+
+[node name="UnlockScreen" type="CanvasLayer" unique_id=394218341]
+script = ExtResource("1_l351b")
+next_task_screen_box = ExtResource("2_1ug2s")
+arrowScene = ExtResource("4_kycfo")
+gamePlayScreen = "uid://bygh0wno1dfkl"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1307777324]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.61180323, 0.762278, 0.95955426, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=467358233]
+texture_filter = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -414.0
+offset_top = 59.0
+offset_right = 386.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1673073208]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TitleBackground" type="ColorRect" parent="HBoxContainer/VBoxContainer" unique_id=357821392]
+custom_minimum_size = Vector2(600, 80)
+layout_mode = 2
+size_flags_horizontal = 6
+color = Color(0.15358326, 0.36808622, 0.343379, 1)
+
+[node name="Title" type="Label" parent="HBoxContainer/VBoxContainer/TitleBackground" unique_id=992335531]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -11.5
+offset_right = 37.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+text = "Building Unlock"
+label_settings = SubResource("LabelSettings_l351b")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer" unique_id=1177313587]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainerBuilding" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/MarginContainer" unique_id=1169494639]
+layout_mode = 2
+alignment = 1
+
+[node name="BuildingBox" parent="HBoxContainer/VBoxContainer/MarginContainer/HBoxContainerBuilding" unique_id=1228573982 instance=ExtResource("2_1ug2s")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainerRecipe" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/MarginContainer/HBoxContainerBuilding" unique_id=48700560]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="Continue" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1855834415]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Continue"

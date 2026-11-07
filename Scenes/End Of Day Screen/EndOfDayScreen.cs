@@ -2,7 +2,6 @@ using Godot;
 
 public partial class EndOfDayScreen : CanvasLayer
 {
-    private Button next_button;
     private Label title;
     private Label label;
 
@@ -14,8 +13,7 @@ public partial class EndOfDayScreen : CanvasLayer
 
     public override void _Ready()
     {
-        next_button = GetNode<Button>("%Continue");
-        next_button.Pressed += NextButtonPressed;
+        GetNode<Button>("%Continue").Pressed += NextButtonPressed;
 
         title = GetNode<Label>("%Title");
         label = GetNode<Label>("%Label");

@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://ckl8hg01loodo"]
 
-[ext_resource type="PackedScene" uid="uid://ddi6hf2gleqi5" path="res://Scenes/Buildings/APen.tscn" id="1_fho3t"]
+[ext_resource type="PackedScene" uid="uid://cjtlhmnj3slx4" path="res://Scenes/Buildings/AMachine.tscn" id="1_fho3t"]
 [ext_resource type="Script" uid="uid://dtiw1os4vc0r8" path="res://Scenes/Buildings/Sheep_Pen.cs" id="2_byn86"]
+[ext_resource type="SpriteFrames" uid="uid://c5xydmwf8ug2g" path="res://Assets/Buildings/SheepPen.aseprite" id="3_bbepw"]
 
 [node name="Sheep_Pen" unique_id=1508941475 instance=ExtResource("1_fho3t")]
 script = ExtResource("2_byn86")
 Size = Vector2(2, 1)
+
+[node name="BaseAnimatedSprite" parent="." index="0" unique_id=1231940941]
+sprite_frames = ExtResource("3_bbepw")
+animation = &"Idle"

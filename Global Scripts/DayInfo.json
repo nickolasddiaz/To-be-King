@@ -1,6 +1,6 @@
 [
   {
-    "unlockable_building": "Barley_Crop",
+    "unlockable_building": "Distillery",
     "product_needs": {
       "Barley": 10
     },

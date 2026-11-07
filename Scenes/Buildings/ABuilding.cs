@@ -27,7 +27,7 @@ public abstract partial class ABuilding : Node2D
 
     public virtual BuildingType buildingType { get; set; }
 
-    public Recipe[] recipes;
+    public virtual Recipe[] recipes { get; set; }
 
     public Queue<ProductType> InputInventory = new();
     public ProductType? outputInventory;
@@ -55,31 +55,6 @@ public abstract partial class ABuilding : Node2D
     public virtual void Interact(Player player)
     {
         OnInteract();
-    }
-
-    public void drawOutputInventory(Vector2 pos)
-    {
-        if (outputInventory != null)
-        {
-            var icon = Products.Instance.data[outputInventory.Value].icon;
-            DrawTexture(icon, pos);
-        }
-    }
-
-    public void drawInputInventory(Vector2 pos)
-    {
-        // make sure the animation player settings "show behind parent is true"
-        float y_offset = 0;
-        foreach (var product in InputInventory)
-        {
-            var icon = Products.Instance.data[product].icon;
-
-            Vector2 drawPos = pos + new Vector2(0, y_offset);
-
-            DrawTexture(icon, drawPos);
-
-            y_offset += 5; // 5px padding
-        }
     }
 
     public async Task interactWithPlayerAsync()

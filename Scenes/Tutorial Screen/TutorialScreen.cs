@@ -8,12 +8,7 @@ public partial class TutorialScreen : CanvasLayer
 
     public override void _Ready()
     {
-        var continue_button = GetNode<Button>("%Continue");
-        continue_button.Pressed += OnButtonPressed;
-    }
-
-    private void OnButtonPressed()
-    {
-        ScreenManager.Instance.SwitchScreenPath(NextPath, false);
+        GetNode<Button>("%Continue").Pressed += () =>
+            ScreenManager.Instance.SwitchScreenPath(NextPath, false);
     }
 }

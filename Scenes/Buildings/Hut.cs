@@ -1,6 +1,3 @@
-using System;
-using Godot;
-
 public partial class Hut : ABuilding
 {
     public override BuildingType buildingType { get; set; } = BuildingType.Hut;

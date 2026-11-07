@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://crxkq3n8ywhcj"]
 
-[ext_resource type="PackedScene" uid="uid://ddi6hf2gleqi5" path="res://Scenes/Buildings/APen.tscn" id="1_5n54h"]
+[ext_resource type="PackedScene" uid="uid://cjtlhmnj3slx4" path="res://Scenes/Buildings/AMachine.tscn" id="1_5n54h"]
 [ext_resource type="Script" uid="uid://dcewnh0wnqnd2" path="res://Scenes/Buildings/Cow_Pen.cs" id="2_eqanm"]
 [ext_resource type="SpriteFrames" uid="uid://e302ob78o17t" path="res://Assets/Buildings/CowPen.aseprite" id="3_tivdx"]
 
@@ -10,3 +10,4 @@ Size = Vector2(2, 1)
 
 [node name="BaseAnimatedSprite" parent="." index="0" unique_id=1231940941]
 sprite_frames = ExtResource("3_tivdx")
+animation = &"Idle"

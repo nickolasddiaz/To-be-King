@@ -7,7 +7,7 @@ using Godot;
 public class Day
 {
     [JsonPropertyName("unlockable_building")]
-    public BuildingType UnlockableBuilding { get; set; }
+    public BuildingType? UnlockableBuilding { get; set; }
 
     [JsonPropertyName("product_needs")]
     public Dictionary<ProductType, int> ProductNeeds { get; set; }
@@ -57,6 +57,11 @@ public partial class DayInfo : Node
         LoadDayInfo(JsonDayFile);
     }
 
+    public Day getToday()
+    {
+        return Days[day];
+    }
+
     public bool islastday()
     {
         return day == Days.Count;
@@ -65,6 +70,16 @@ public partial class DayInfo : Node
     public string formatDay()
     {
         return $"Day: ${day + 1}";
+    }
+
+    public BuildingType getTodaysBuilding()
+    {
+        return (BuildingType)Days[day].UnlockableBuilding;
+    }
+
+    public bool isBuildingUnlockedToday()
+    {
+        return Days[day].UnlockableBuilding != null;
     }
 
     private void LoadDayInfo(string filePath)

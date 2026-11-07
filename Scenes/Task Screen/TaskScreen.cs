@@ -9,14 +9,17 @@ public partial class TaskScreen : CanvasLayer
     public PackedScene next_task_screen_box { get; set; }
 
     [Export(PropertyHint.File, "*.tscn")]
-    public string NextPath { get; set; } = string.Empty;
+    public string gamePlayScreen { get; set; } = string.Empty;
+
+    [Export(PropertyHint.File, "*.tscn")]
+    public string unlockScreen { get; set; } = string.Empty;
 
     private readonly Dictionary<ProductType, NextTaskScreenBox> productItems = new();
 
     public override void _Ready()
     {
         inventoryContainer = GetNode<GridContainer>("%InventoryGridContainer");
-        var continue_button = GetNode<Button>("%Continue");
+        GetNode<Button>("%Continue").Pressed += OnButtonPressed;
 
         foreach (Node child in inventoryContainer.GetChildren())
         {
@@ -40,8 +43,6 @@ public partial class TaskScreen : CanvasLayer
             sceneInstance.setText($"{product}: {productCount}");
             productItems[product] = sceneInstance;
         }
-
-        continue_button.Pressed += OnButtonPressed;
     }
 
     public void updateProductAmounts()
@@ -56,6 +57,13 @@ public partial class TaskScreen : CanvasLayer
     {
         // PlayerData.Instance.newDay();
         updateProductAmounts();
-        ScreenManager.Instance.SwitchScreenPath(NextPath, false);
+        if (DayInfo.Instance.isBuildingUnlockedToday())
+        {
+            ScreenManager.Instance.SwitchScreenPath(unlockScreen, false);
+        }
+        else
+        {
+            ScreenManager.Instance.SwitchScreenPath(gamePlayScreen, false);
+        }
     }
 }

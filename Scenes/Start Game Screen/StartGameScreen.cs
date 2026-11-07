@@ -11,20 +11,10 @@ public partial class StartGameScreen : CanvasLayer
 
     public override void _Ready()
     {
-        var credits_button = GetNode<Button>("%Credits");
-        credits_button.Pressed += CreditOnButtonPressed;
+        GetNode<Button>("%Credits").Pressed += () =>
+            ScreenManager.Instance.SwitchScreenPath(CreditsPath, false);
 
-        var gameplay_button = GetNode<Button>("%StartGame");
-        gameplay_button.Pressed += GameplayOnButtonPressed;
-    }
-
-    private void CreditOnButtonPressed()
-    {
-        ScreenManager.Instance.SwitchScreenPath(CreditsPath, false);
-    }
-
-    private void GameplayOnButtonPressed()
-    {
-        ScreenManager.Instance.SwitchScreenPath(NextPath, false);
+        GetNode<Button>("%StartGame").Pressed += () =>
+            ScreenManager.Instance.SwitchScreenPath(NextPath, false);
     }
 }
