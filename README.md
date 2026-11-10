@@ -6,7 +6,7 @@ Game Jam/Expo Project Florida Poly Fall 2026
 
 Godot 4.7.2.stable.mono using C#
 
-[AsepriteWizard](https://godotengine.org/asset-library/asset/713): Asesprite is needed to import assets
+[AsepriteWizard](https://godotengine.org/asset-library/asset/1572): Asesprite is needed to import assets
 
 VScode Extensions:
 
@@ -62,48 +62,6 @@ To-be-King $tree -a -L 1
 ├── project.csproj      # C# solution file
 ├── project.godot       # Godot settings file
 └── project.sln         # C# solution file
-```
-
-## Diagram of the Game
-
-### Screen Management
-
-```mermaid
-graph TD;
-    A["Start Game Screen"] <--> B["Credits screen"]
-    A --> C["Story Intro Screen"]
-    C --> D["Tutorial Screen"]
-    D --> E["Task Screen"]
-    E --> J["Unlock Screen"]
-    E --> F["Placement Screen"]
-    J --> F
-    F --> G["Game Play"]
-    G --> I["End of Day"]
-    I --> E
-    I --> K["End of Game"]
-    K --> A
-    F <--> |Pausing| L["Pause Screen"]
-    G <--> |Pausing| L
-    L --> |Restart Game| A
-    L --> |Restart Day| E
-```
-
-### Building Hierarchy
-
-Using inherited scenes and abstract classes
-
-```mermaid
-graph TD;
-    A["ABuilding"] --> B["ACrop"]
-    A --> C["AMachine"]
-    A --> E["Hut"]
-    B --> F["Cabbage Crop"]
-    B --> G["Barley Crop"]
-    B --> H["Grape Crop"]
-    C --> I["Distillery"]
-    C --> J["Bread Oven"]
-    C --> K["Sheep Pen"]
-    C --> L["Cow Pen"]
 ```
 
 ## About
@@ -183,46 +141,30 @@ We will use Asprite and we will use the Asprite plugin to manage the assets
 
 Width x Height:
 
-- The map should be 640x360 pixels
-
+- The map should be 960x540 pixels
 - Each tile should be 32x32 pixels
 
 List of buildings:
 
 - Hut: 2x2 tiles
-
 - Crop tile: 1x1 tile
-
 - Animal pen: 2x1 tiles
-
 - Bread oven: 2x1 tiles
-
 - Distillery: 2x1 tiles
 
 List of sprites to draw:
 
 - Player: animated sprite for running and idle
-
 - Hut: one sprite
-
 - Base crop tile: one sprite
-
 - Barleys crop tile: 2-3 sprites; 1 starting to grow; 1 almost grown; 1 finished growing
-
 - Cabbage crop tile: 2-3 sprites; 1 starting to grow; 1 almost grown; 1 finished growing
-
 - Grape crop tile: 2-3 sprites; 1 starting to grow; 1 almost grown; 1 finished growing
-
 - Animal pen: 6 sprites; 1 with cow; 1 with sheep; 1 with sheep without wool; 1 with filled wool in its product spot; 1 with a milk jar in its product spot, 1 with barley in its feed spot
-
 - Bread oven: 4 sprites; 1 empty, 1 cooking up with fire; 1 with barley in its feed spot, 1 with bread in its product spot
-
 - Distillery: 7 sprites; 1 empty; 1 producing wine, 1 producing ale, 1 with grapes in its feed slot, 1 with barely in its feed slot, 1 with wine in its product spot, 1 with ale in its product spot
-
 - One icon for each building except hut: 8 sprites; base crop, barley seed, cabbage seed, grape seed, animal pen with sheep, animal pen with cow, bread oven, and distillery. This is icons for the buy screen
-
 - 8 icons for products: barleys, cabbages, grapes, wools, milks, breads, ales, wines
-
 - Quests: 3 sprites; beggar, caravan, king
 
 Theme:
@@ -234,29 +176,20 @@ Theme:
 Tracing placement: tracking the mouse position, snapping it to a grid coordinate using a TileMapLayer
 
 1. Get the mouse position relative to the TileMapLayer
-
-Vector2 localMousePos = TileMapLayer.GetLocalMousePosition();
-
-1. Convert that position to map/grid coordinates
-
-Vector2i mapCoords = TileMapLayer.LocalToMap(localMousePos);
-
-1. Convert the map coordinates back into local/world positions to snap to the cell
-
-Vector2 snappedLocalPos = TileMapLayer.MapToLocal(mapCoords);
-
-1. Update the sprite’s global position
-
-Sprite.GlobalPosition = TargetTileMapLayer.ToGlobal(snappedLocalPos);
+    Vector2 localMousePos = TileMapLayer.GetLocalMousePosition();
+2. Convert that position to map/grid coordinates
+    Vector2i mapCoords = TileMapLayer.LocalToMap(localMousePos);
+3. Convert the map coordinates back into local/world positions to snap to the cell
+    Vector2 snappedLocalPos = TileMapLayer.MapToLocal(mapCoords);
+4. Update the sprite’s global position
+    Sprite.GlobalPosition = TargetTileMapLayer.ToGlobal(snappedLocalPos);
 
 [Quick Tutorial](https://www.youtube.com/watch?v=z3RDS3s0Oz8&t=141s)
 
 Edge cases:
 
 - Detect invalid placements through ray casting to an area
-
 - Having modes such as buy, move, and delete
-
 - Multiple sized title systems like 1x1, 2x1, and 4x4
 
 Use of packed scenes to manage all the buildings:
@@ -289,3 +222,255 @@ Implementation:
 In the global script it will have a queue that stores a list of buildings, every time a building is clicked the building itself will add its own reference to the queue
 
 The player will run to the building’s position and execute the handle for the building passing the reference to the player so the building can be handled
+
+## Software Engineering Document
+
+### Phase 1: Create a list of requirements defining your game
+
+| Requirements Number | Requirement                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| R001[1]             | The user will be able to place, move and sell buildings. A grid of squares will be shown indicating where valid placements are. A green indicator will shown for a valid placement. A red indicator will be shown for an invalid placement. The user will only be able to place buildings that they have unlocked and can afford to purchase.                                                                                                                 |
+| R002[1]             | The user will be shown how many products they need to achieve to pass the level/day. This display will be updated every time the products are updated. It will not show products that are not unlocked.                                                                                                                                                                                                                                                       |
+| R003[1]             | The user will be shown a description of the newly unlocked building. It will show what items it takes in and items it outputs.                                                                                                                                                                                                                                                                                                                                |
+| R004[1]             | The user will be able to select a building and go towards buildings. When the player reaches the building, it will take/give from the player's inventory.                                                                                                                                                                                                                                                                                                     |
+| R005[1]             | The buildings will need a robust recipe system that can handle taking/giving from a player's inventory. It will handle drawing the items it has based on the state of the building's inventory. If a recipe is fulfilled it will produce an output after a certain amount of time.                                                                                                                                                                            |
+| R006[1]             | A robust screen manager is needed to transition from different scenes.  For example moving from the start of the game to the task screen to the placement manager and the gameplay.                                                                                                                                                                                                                                                                           |
+| R007[1]             | A system of tracking the state/data of the days. Every day there is a list of products to work for, a building unlock, the amount of time to complete and a dialog.                                                                                                                                                                                                                                                                                           |
+| R008[1]             | The player will not use the typical WASD to move around. Instead it will be a queue based system where the player will left click a building and the player will go to that building. The clicks are stackable, clicking multiple buildings will make the player go to all the selected buildings. Right clicking anywhere will remove the queue of selections. If a building is selected an arrow will be drawn indicating that the player has selected  it. |
+| R009[1]             | The map of the game will be 960 x 540 pixels and the building icons will be 32x32 pixels per tile and the product icons will be 16x16 pixels.                                                                                                                                                                                                                                                                                                                 |
+| R010[1]             | A timer will be shown indicating the amount of time a player has until the end of the day.                                                                                                                                                                                                                                                                                                                                                                    |
+| R011[2]             | A pause menu screen will be shown if the player presses escape or presses the pause screen icon. It will need to pause the game time. The menu will consist of continue/unpause, restart the day, and restart the game.                                                                                                                                                                                                                                       |
+| R012[2]             | Optional quests will be given over the course of the game. The quests will require the player to sacrifice a certain amount of resources or time to complete. At the end of the game the good/bad ending will occur depending on if the player did the kindness quests.                                                                                                                                                                                       |
+| R013[2]             | A robust sound manager will be needed to play the background music and sfx sounds. It will be called during each ui interaction.                                                                                                                                                                                                                                                                                                                              |
+| R014[2]             | A godot ui theme will be created to reflect the medieval theme of the game.                                                                                                                                                                                                                                                                                                                                                                                   |
+| R015[2]             | A banner for the game will be created for the start screen, depicting the king and the jester.  Two more artworks are needed for the good and bad endings of the game.                                                                                                                                                                                                                                                                                        |
+| R016[3]             | More specialized buildings like a bee hive that will attack/stun players from time to time                                                                                                                                                                                                                                                                                                                                                                    |
+| R017[3]             | A robust tutorial screen indicated exactly how the player plays the game. It guides the player through foundational interaction in the game.                                                                                                                                                                                                                                                                                                                  |
+| R018[3]             | Upgrades screen if the player has enough money they can upgrade the size of their inventory, or speed of buildings.                                                                                                                                                                                                                                                                                                                                           |
+| R019[3]             | A mini-game screen that allows bonus rewards for as much product that the player can achieve.                                                                                                                                                                                                                                                                                                                                                                 |
+| R020[3]             | A trophy/screenshot of the game if the player wins the game.                                                                                                                                                                                                                                                                                                                                                                                                  |
+
+### Phase 2: Create a use-case diagram
+
+```mermaid
+flowchart LR
+    %% Actors
+    Player((Player))
+    KingNPC((King NPC))
+
+    subgraph Game_System [To be King Game System]
+        
+        %% Main Menu / Screen Management
+        subgraph Screens [Menus & Navigation]
+            UC_Start([Start Game / View Credits])
+            UC_Pause([Pause & Restart Day/Game])
+        end
+
+        %% Active Farming Gameplay
+        subgraph Farming_Loop [Active Day Loop]
+            UC_Queue([Queue Movement by Clicking Buildings])
+            UC_Deliver([Deliver Harvested Goods to Hut])
+            UC_Crops([Plant & Harvest Crops])
+            UC_Animals([Feed Animals Barley to Produce Wool/Milk])
+            UC_Machines([Process Resources in Oven/Distillery])
+        end
+
+        %% Management / Placement UI
+        subgraph Placement_Screen [Between-Day Phase]
+            UC_Buy([Buy New Buildings & Seeds])
+            UC_Move([Move / Delete Grid Layout])
+            UC_Check([Check Day Product Requirements])
+        end
+
+        %% Kindness Quests / Story Progression
+        subgraph Story_Quests [Kindness & Story Progression]
+            UC_Beggar([Help Beggar - Day 3])
+            UC_Caravan([Help Caravan - Day 5])
+            UC_Stranger([Guide Disguised Stranger - Day 8])
+        end
+
+    end
+
+    Player --> UC_Start
+    Player --> UC_Pause
+    Player --> UC_Queue
+    Player --> UC_Deliver
+
+    UC_Deliver -.-> UC_Crops
+    UC_Deliver -.-> UC_Animals
+    UC_Deliver -.-> UC_Machines
+
+    Player --> UC_Buy
+    Player --> UC_Move
+    Player --> UC_Check
+    Player --> UC_Beggar
+    Player --> UC_Caravan
+    Player --> UC_Stranger
+
+    %% External System / NPC Trigger
+    UC_Stranger <--> KingNPC
+```
+
+### Phase 3: Create a Requirements fulfillment diagram
+
+|          | **UCS-001** | **UCS-002** | **UCS-003** | **UCS-0014** | **UCS-005** | **UCS-006** | **UCS-007** | **UCS-008** | **UCS-009** | **UCS-010** | **UCS-011** | **UCS-012** | **UCS-013** | **UCS-014** | **UCS-015** |
+|:--------:|:-----------:|:-----------:|:-----------:|:------------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|
+| **R001** |      X      |      X      |      X      |              |             |             |             |             |             |             |             |             |             |             |             |
+| **R002** |             |             |             |              |             |             |             |      X      |             |             |             |             |             |             |             |
+| **R003** |             |             |      X      |              |             |             |             |             |             |             |             |             |             |             |             |
+| **R004** |             |             |             |       X      |      X      |             |      X      |             |             |             |             |             |             |             |             |
+| **R005** |             |             |             |              |             |             |      X      |             |             |             |             |             |             |             |             |
+| **R006** |             |             |             |              |             |             |             |             |             |             |      X      |             |             |             |             |
+| **R007** |             |             |             |              |             |             |             |             |             |             |             |      X      |             |             |             |
+| **R008** |             |             |             |       X      |      X      |      X      |             |             |             |             |             |             |             |             |             |
+| **R009** |             |             |             |              |             |             |             |             |             |             |             |             |             |             |             |
+| **R010** |             |             |             |              |             |             |             |             |             |             |      X      |      X      |             |             |             |
+| **R011** |             |             |             |              |             |             |             |             |             |             |             |             |      X      |             |             |
+| **R012** |             |             |             |              |             |             |             |             |      X      |      X      |             |             |             |      X      |      X      |
+| **R013** |             |             |             |              |             |             |             |             |             |             |             |             |             |             |             |
+| **R014** |             |             |             |              |             |             |             |             |             |             |             |             |      X      |             |             |
+| **R015** |             |             |             |              |             |             |             |             |             |             |             |             |             |      X      |      X      |
+| **R016** |             |             |             |              |             |             |             |             |             |             |             |             |             |             |             |
+| **R017** |             |             |             |              |             |             |             |             |             |             |             |             |             |             |             |
+| **R018** |             |             |             |              |             |             |             |             |             |             |             |             |             |             |             |
+| **R019** |             |             |             |              |             |             |             |             |             |             |             |             |             |             |             |
+| **R020** |             |             |             |              |             |             |             |             |             |             |             |             |             |             |             |
+
+### Phase 4: Create enough use-case scenarios to fulfill each requirement
+
+| **Scenario Id** | **Use Case**   | **Preconditions**                                                                              | **Outcome**                                                          | **Postconditions**                                                                  | **Requirements** |
+|-----------------|----------------|------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
+| UCS-001         | Grid Placement | Player attempts to place an unlocked building they can afford on an empty tile.                | Grid displays a green indicator                                      | Building successfully snaps to the grid and subtracts money.                        | R001             |
+| UCS-002         | Grid Placement | Player attempts to place an unlocked building they can afford over an existing building.       | Grid displays a red indicator                                        | Placement is blocked.                                                               | R001             |
+| UCS-003         | Grid Placement | Player tries to buy a locked building or one they cannot afford.                               | Building is not selected                                             | Error sound is played                                                               | R001, R003       |
+| UCS-004         | Movement       | Player left-clicks a single building during gameplay.                                          | An arrow is drawn indicating selection                               | Player character moves directly to the building.                                    | R004, R008       |
+| UCS-005         | Movement       | Player left-clicks Building A, then Building B, then Building C in succession.                 | Three arrows are drawn on the buildings                              | Player character moves to A, executes its logic, then moves to B, then C.           | R004, R008       |
+| UCS-006         | Movement       | Player has 2 buildings queued up and right-clicks anywhere on the screen.                      | All movement selection arrows disappear                              | the player's movement queue is completely cleared.                                  | R008             |
+| UCS-007         | Inventory      | Player reaches a machine building (e.g., Distillery) with required raw materials in inventory. | The machine takes the ingredients from the player's inventory.       | Displays its processing state, and the machine takes time to process the materials. | R004, R005       |
+| UCS-008         | Inventory      | Player reaches a finished building (e.g., grown Crop or finished Bread Oven).                  | The building delivers the output product into the player's inventory | Updates its graphic back to empty/unharvested.                                      | R002             |
+| UCS-009         | Progression    | Player collects a required level product (e.g., harvests 1 of 10 Barleys).                     | The UI counter instantly updates (e.g., from 0/10 to 1/10).          | The player sees the UI update.                                                      | R012             |
+| UCS-010         | Quests         | A kindness quest appears, and the player chooses to sacrifice the requested resources or time. | Resources are removed from inventory (or time is subtracted)         | A flag is set tracking that this optional quest was completed.                      | R012             |
+| UCS-011         | Game State     | The level timer reaches zero, and the player has met all product quotas.                       | Gameplay scene transitions to the "End of Day" scene                 | The next day/task is unlocked.                                                      | R006, R010       |
+| UCS-012         | Game State     | The level timer reaches zero, but the player is short on required products.                    | A day-failed sequence triggers.                                      | The player has to restart the day.                                                  | R007, R010       |
+| UCS-013         | Game State     | Player presses ESC or the pause button during intense gameplay.                                | The pause UI is shown.                                               | Game clock completely freezes.                                                      | R011, R014       |
+| UCS-014         | Endings        | Player finishes the last day having successfully completed all optional kindness quests.       | Game transitions to the Good Ending                                  | Artwork scene depicting the player chosen as the new king.                          | R012, R015       |
+| UCS-015         | Endings        | Player finishes the last day but skipped one or more kindness quests.                          | Game transitions to the Bad Ending                                   | Artwork scene showing another commoner chosen for their kindness.                   | R012, R015       |
+
+### Phase 5: Create an ORD diagram with the class relationships
+
+```mermaid
+erDiagram
+    PLAYER-DATA ||--o{ PLACED-BUILDING : "owns/places"
+    PLAYER-DATA ||--|| CAMPAIGN-PROGRESS : tracks
+    
+    DAY-CONFIGURATION ||--o{ PRODUCT-REQUIREMENT : specifies
+    DAY-CONFIGURATION ||--o{ BUILDING-UNLOCK : unlocks
+    DAY-CONFIGURATION ||--o| KINDNESS-QUEST : contains
+    
+    CAMPAIGN-PROGRESS }|--|| DAY-CONFIGURATION : "current day"
+    
+    PLACED-BUILDING ||--|| BUILDING-TYPE : "instantiates (PackedScene)"
+
+    PLAYER-DATA {
+        int total_money
+        int kindness_meter 
+    }
+
+    CAMPAIGN-PROGRESS {
+        int current_day 
+        boolean kindness_requirement_completed
+    }
+
+    DAY-CONFIGURATION {
+        int day_number 
+        int money_reward
+        int time_limit_seconds
+    }
+
+    PRODUCT-REQUIREMENT {
+        string product_description
+        int required_quantity
+    }
+
+    BUILDING-UNLOCK {
+        int day_number 
+        BuildingType building_type
+    }
+
+    KINDNESS-QUEST {
+        string quest_description
+        ProductType[] required_product
+        int[] required_quantity
+        int time_penalty_seconds
+    }
+
+    PLACED-BUILDING {
+        BuildingType building_type
+        vector2i grid_coordinates
+        float production_timer_left
+    }
+
+    BUILDING-TYPE {
+        BuildingType building_type
+        int cost
+        vector2i tile_size
+        ProductType[] input_product_required
+        ProductType[] output_product_produced
+        Recipe[] recipes
+    }
+
+```
+
+### Phase 6: Create a formal class diagram from the ORD
+
+#### Screen Management
+
+```mermaid
+graph TD;
+    A["Start Game Screen"] <--> B["Credits screen"]
+    A --> C["Story Intro Screen"]
+    C --> D["Tutorial Screen"]
+    D --> E["Task Screen"]
+    E --> J["Unlock Screen"]
+    E --> F["Placement Screen"]
+    J --> F
+    F --> G["Game Play"]
+    G --> I["End of Day"]
+    I --> E
+    I --> K["End of Game"]
+    K --> A
+    F <--> |Pausing| L["Pause Screen"]
+    G <--> |Pausing| L
+    L --> |Restart Game| A
+    L --> |Restart Day| E
+```
+
+#### Building Hierarchy
+
+Using inherited scenes and abstract classes
+
+Abstract Methods/Variables:
+
+- interactWithPlayer
+- Interact
+- InputInventory
+- outputInventory
+- recipes
+- buildingType
+- Size
+- Cost
+- draw
+
+```mermaid
+graph TD;
+    A["ABuilding"] --> B["ACrop"]
+    A --> C["AMachine"]
+    A --> E["Hut"]
+    B --> F["Cabbage Crop"]
+    B --> G["Barley Crop"]
+    B --> H["Grape Crop"]
+    C --> I["Distillery"]
+    C --> J["Bread Oven"]
+    C --> K["Sheep Pen"]
+    C --> L["Cow Pen"]
+```
