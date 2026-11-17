@@ -8,8 +8,14 @@ public partial class CreditsScreen : CanvasLayer
 
     public override void _Ready()
     {
-        GetNode<Button>("%Back").Pressed += () =>
-            ScreenManager.Instance.SwitchScreenPath(StartPath, false);
-        ;
+        GetNode<Button>("%Back").Pressed += async () =>
+        {
+            await LongSceneManagerCs.Instance.SwitchScene(
+                StartPath,
+                LongSceneManagerCs.LoadMethod.BothPreloadFirst,
+                cacheCurrentScene: false,
+                "no_transition"
+            );
+        };
     }
 }

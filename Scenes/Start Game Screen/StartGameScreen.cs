@@ -11,10 +11,25 @@ public partial class StartGameScreen : CanvasLayer
 
     public override void _Ready()
     {
-        GetNode<Button>("%Credits").Pressed += () =>
-            ScreenManager.Instance.SwitchScreenPath(CreditsPath, false);
+        LongSceneManagerCs.Instance.MaxCacheSize = 20;
+        GetNode<Button>("%Credits").Pressed += async () =>
+        {
+            await LongSceneManagerCs.Instance.SwitchScene(
+                CreditsPath,
+                LongSceneManagerCs.LoadMethod.BothPreloadFirst,
+                cacheCurrentScene: false,
+                "no_transition"
+            );
+        };
 
-        GetNode<Button>("%StartGame").Pressed += () =>
-            ScreenManager.Instance.SwitchScreenPath(NextPath, false);
+        GetNode<Button>("%StartGame").Pressed += async () =>
+        {
+            await LongSceneManagerCs.Instance.SwitchScene(
+                NextPath,
+                LongSceneManagerCs.LoadMethod.BothPreloadFirst,
+                cacheCurrentScene: false,
+                "no_transition"
+            );
+        };
     }
 }

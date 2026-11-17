@@ -11,15 +11,27 @@ public partial class PauseMenu : CanvasLayer
     public override void _Ready()
     {
         GetNode<Button>("%Continue").Pressed += TogglePause;
-        GetNode<Button>("%RestartDay").Pressed += () =>
+
+        GetNode<Button>("%RestartDay").Pressed += async () =>
         {
-            ScreenManager.Instance.SwitchScreenPath(nextTaskScreen, false);
             TogglePause();
+            await LongSceneManagerCs.Instance.SwitchScene(
+                nextTaskScreen,
+                LongSceneManagerCs.LoadMethod.BothPreloadFirst,
+                cacheCurrentScene: false,
+                "no_transition"
+            );
         };
-        GetNode<Button>("%RestartGame").Pressed += () =>
+
+        GetNode<Button>("%RestartGame").Pressed += async () =>
         {
-            ScreenManager.Instance.SwitchScreenPath(startScreen, false);
             TogglePause();
+            await LongSceneManagerCs.Instance.SwitchScene(
+                startScreen,
+                LongSceneManagerCs.LoadMethod.BothPreloadFirst,
+                cacheCurrentScene: false,
+                "no_transition"
+            );
         };
     }
 

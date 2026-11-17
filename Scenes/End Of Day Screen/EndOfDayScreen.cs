@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Godot;
 
 public partial class EndOfDayScreen : CanvasLayer
@@ -39,15 +40,25 @@ public partial class EndOfDayScreen : CanvasLayer
         }
     }
 
-    private void NextButtonPressed()
+    private async void NextButtonPressed()
     {
         if (DayInfo.Instance.islastday() && Products.Instance.checkIfProductsAreSatisfied())
         {
-            ScreenManager.Instance.SwitchScreenPath(EndGamePath, false);
+            await LongSceneManagerCs.Instance.SwitchScene(
+                EndGamePath,
+                LongSceneManagerCs.LoadMethod.BothPreloadFirst,
+                cacheCurrentScene: false,
+                "no_transition"
+            );
         }
         else
         {
-            ScreenManager.Instance.SwitchScreenPath(NextTaskPath, false);
+            await LongSceneManagerCs.Instance.SwitchScene(
+                EndGamePath,
+                LongSceneManagerCs.LoadMethod.BothPreloadFirst,
+                cacheCurrentScene: false,
+                "no_transition"
+            );
         }
     }
 }

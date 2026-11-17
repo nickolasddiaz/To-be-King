@@ -4,14 +4,12 @@ Game Jam/Expo Project Florida Poly Fall 2026
 
 ## Tool Used
 
-Godot 4.7.2.stable.mono using C#
-
-[AsepriteWizard](https://godotengine.org/asset-library/asset/1572): Asesprite is needed to import assets
-
-VScode Extensions:
-
-- [.NET Install Tool](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.vscode-dotnet-runtime)
-- [Godot .NET Tools](https://marketplace.visualstudio.com/items?itemName=woberg.godot-dotnet-tools)
+- Godot 4.7.2.stable.mono using C#
+  - [AsepriteWizard](https://godotengine.org/asset-library/asset/1572): Asesprite is needed to import assets by [`@viniciusgerevini`](https://github.com/viniciusgerevini/godot-aseprite-wizard)
+  - [LongSceneManager](https://godotengine.org/asset-library/asset/4546): To manage switching scenes by [`@AWAUOX`](https://github.com/AWAUOX)
+- VScode Extensions:
+  - [.NET Install Tool](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.vscode-dotnet-runtime)
+  - [Godot .NET Tools](https://marketplace.visualstudio.com/items?itemName=woberg.godot-dotnet-tools)
 
 ## Team
 

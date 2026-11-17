@@ -14,7 +14,7 @@ public partial class BuildingUi : CanvasLayer
     public override void _Ready()
     {
         inventoryContainer = GetNode<GridContainer>("%GridContainer");
-        GetNode<Button>("%Continue").Pressed += OnButtonPressed;
+        // GetNode<Button>("%Continue").Pressed += OnButtonPressed;
 
         foreach (Node child in inventoryContainer.GetChildren())
         {
@@ -37,10 +37,5 @@ public partial class BuildingUi : CanvasLayer
             sceneInstance.productPic.Pressed += () =>
                 PlacementData.Instance.selectBuilding(buildingType);
         }
-    }
-
-    private void OnButtonPressed()
-    {
-        // PlayerData.Instance.placementToGameplayTransition();
     }
 }

@@ -8,7 +8,14 @@ public partial class EndGameScreen : CanvasLayer
 
     public override void _Ready()
     {
-        GetNode<Button>("%Continue").Pressed += () =>
-            ScreenManager.Instance.SwitchScreenPath(StartPath, false);
+        GetNode<Button>("%Continue").Pressed += async () =>
+        {
+            await LongSceneManagerCs.Instance.SwitchScene(
+                StartPath,
+                LongSceneManagerCs.LoadMethod.BothPreloadFirst,
+                cacheCurrentScene: false,
+                "no_transition"
+            );
+        };
     }
 }

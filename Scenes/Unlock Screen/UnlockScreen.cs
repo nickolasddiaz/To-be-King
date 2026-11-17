@@ -19,7 +19,15 @@ public partial class UnlockScreen : CanvasLayer
     {
         BuildingBox = GetNode<NextTaskScreenBox>("%BuildingBox");
         VBoxContainerRecipe = GetNode<VBoxContainer>("%VBoxContainerRecipe");
-        GetNode<Button>("%Continue").Pressed += OnButtonPressed;
+        GetNode<Button>("%Continue").Pressed += async () =>
+        {
+            await LongSceneManagerCs.Instance.SwitchScene(
+                gamePlayScreen,
+                LongSceneManagerCs.LoadMethod.BothPreloadFirst,
+                cacheCurrentScene: false,
+                "no_transition"
+            );
+        };
 
         var building = DayInfo.Instance.getTodaysBuilding();
         var buildingInfo = Buildings.Instance.data[building];
@@ -65,10 +73,5 @@ public partial class UnlockScreen : CanvasLayer
         container.AddChild(sceneInstance);
         sceneInstance.setTexture(texture);
         sceneInstance.setText(name);
-    }
-
-    private void OnButtonPressed()
-    {
-        ScreenManager.Instance.SwitchScreenPath(gamePlayScreen, false);
     }
 }

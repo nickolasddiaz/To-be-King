@@ -1,0 +1,180 @@
+using System;
+using Godot;
+
+/// <summary>
+/// Black screen transition scene
+/// Provides fade-in/fade-out effect, configurable
+/// 黑屏过渡场景
+/// 提供淡入淡出效果，可配置
+/// </summary>
+public partial class LoadingBlackScreenCs : CanvasLayer
+{
+    // Export properties - Transition settings 导出属性 - 过渡设置
+    [ExportCategory("过渡设置")]
+    [Export(PropertyHint.Range, "0.0,10.0,0.1")]
+    public float FadeInDuration { get; set; } = 0.3f; // Fade-in duration (seconds) 淡入持续时间（秒）
+
+    [Export(PropertyHint.Range, "0.0,10.0,0.1")]
+    public float FadeOutDuration { get; set; } = 0.3f; // Fade-out duration (seconds) 淡出持续时间（秒）
+
+    [Export]
+    public Color Color { get; set; } = new Color(0, 0, 0, 1); // Screen color 屏幕颜色
+
+    // Export properties - Advanced settings 导出属性 - 高级设置
+    [ExportCategory("高级设置")]
+    [Export]
+    public Tween.EaseType FadeInEase { get; set; } = Tween.EaseType.Out;
+
+    [Export]
+    public Tween.TransitionType FadeInTrans { get; set; } = Tween.TransitionType.Quad;
+
+    [Export]
+    public Tween.EaseType FadeOutEase { get; set; } = Tween.EaseType.In;
+
+    [Export]
+    public Tween.TransitionType FadeOutTrans { get; set; } = Tween.TransitionType.Quad;
+
+    // Signal definitions 信号定义
+    [Signal]
+    public delegate void FadeInStartedEventHandler();
+
+    [Signal]
+    public delegate void FadeInCompletedEventHandler();
+
+    [Signal]
+    public delegate void FadeOutStartedEventHandler();
+
+    [Signal]
+    public delegate void FadeOutCompletedEventHandler();
+
+    // Compatible signal names for SceneManager 兼容SceneManager的信号名称
+    [Signal]
+    public delegate void fade_in_completedEventHandler();
+
+    [Signal]
+    public delegate void fade_out_completedEventHandler();
+
+    // Private variables 私有变量
+    private ColorRect _colorRect;
+    private Tween _tween;
+    private bool _isTransitioning;
+
+    public override void _Ready()
+    {
+        // Set layer to highest 设置层级为最高
+        Layer = 1000;
+        FollowViewportEnabled = true;
+
+        // Create color rect as mask 创建颜色矩形作为遮罩
+        _colorRect = new ColorRect();
+        _colorRect.Color = Color;
+        _colorRect.Size = GetViewport().GetVisibleRect().Size;
+        _colorRect.AnchorLeft = 0;
+        _colorRect.AnchorTop = 0;
+        _colorRect.AnchorRight = 1;
+        _colorRect.AnchorBottom = 1;
+        _colorRect.MouseFilter = Control.MouseFilterEnum.Stop;
+
+        // Initial state transparent 初始状态透明
+        _colorRect.Modulate = new Color(1, 1, 1, 0);
+        _colorRect.Visible = false;
+
+        AddChild(_colorRect);
+    }
+
+    /// <summary>
+    /// Fade in black screen 淡入黑屏
+    /// </summary>
+    public async void FadeIn()
+    {
+        GD.Print("Fade-in started 开始淡入");
+        // 如果正在过渡中，则停止当前的过渡动画
+        if (_isTransitioning)
+        {
+            _StopCurrentTween();
+        }
+
+        _isTransitioning = true;
+        EmitSignal(SignalName.FadeInStarted);
+
+        _colorRect.Visible = true;
+        _colorRect.Modulate = new Color(1, 1, 1, 0);
+
+        _tween = CreateTween();
+        _tween.SetEase(FadeInEase).SetTrans(FadeInTrans);
+        _tween.TweenProperty(_colorRect, "modulate:a", 1.0, FadeInDuration);
+
+        await ToSignal(_tween, "finished");
+        _isTransitioning = false;
+        EmitSignal(SignalName.FadeInCompleted);
+        EmitSignal(SignalName.fade_in_completed);
+        GD.Print("Black screen fade-in completed 黑屏淡入完成");
+    }
+
+    /// <summary>
+    /// GDScript compatible fade-in method GDScript兼容的淡入方法
+    /// </summary>
+    /// <returns>Godot对象，可用于等待完成信号</returns>
+    public GodotObject fade_in()
+    {
+        FadeIn();
+        return this;
+    }
+
+    /// <summary>
+    /// Fade out black screen 淡出黑屏
+    /// </summary>
+    public async void FadeOut()
+    {
+        GD.Print("Fade-out started 开始淡出");
+        // 如果正在过渡中，则停止当前的过渡动画
+        if (_isTransitioning)
+        {
+            _StopCurrentTween();
+        }
+
+        _isTransitioning = true;
+        EmitSignal(SignalName.FadeOutStarted);
+
+        _tween = CreateTween();
+        _tween.SetEase(FadeOutEase).SetTrans(FadeOutTrans);
+        _tween.TweenProperty(_colorRect, "modulate:a", 0.0, FadeOutDuration);
+
+        await ToSignal(_tween, "finished");
+        _colorRect.Visible = false;
+        _isTransitioning = false;
+        EmitSignal(SignalName.FadeOutCompleted);
+        EmitSignal(SignalName.fade_out_completed);
+        GD.Print("Black screen fade-out completed 黑屏淡出完成");
+    }
+
+    /// <summary>
+    /// GDScript compatible fade-out method GDScript兼容的淡出方法
+    /// </summary>
+    /// <returns>Godot对象，可用于等待完成信号</returns>
+    public GodotObject fade_out()
+    {
+        FadeOut();
+        return this;
+    }
+
+    /// <summary>
+    /// Stop current transition animation 停止当前的过渡动画
+    /// </summary>
+    private void _StopCurrentTween()
+    {
+        _tween?.Kill();
+        _isTransitioning = false;
+    }
+
+    /// <summary>
+    /// Immediately show or hide black screen (no transition) 立即显示或隐藏黑屏（无过渡）
+    /// </summary>
+    /// <param name="visible">Whether visible 是否可见</param>
+    public void SetImmediateVisible(bool visible)
+    {
+        _StopCurrentTween();
+        _colorRect.Visible = visible;
+        _colorRect.Modulate = new Color(1, 1, 1, visible ? 1.0f : 0.0f);
+    }
+}

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
 
@@ -53,17 +54,27 @@ public partial class TaskScreen : CanvasLayer
         }
     }
 
-    private void OnButtonPressed()
+    private async void OnButtonPressed()
     {
         // PlayerData.Instance.newDay();
         updateProductAmounts();
         if (DayInfo.Instance.isBuildingUnlockedToday())
         {
-            ScreenManager.Instance.SwitchScreenPath(unlockScreen, false);
+            await LongSceneManagerCs.Instance.SwitchScene(
+                unlockScreen,
+                LongSceneManagerCs.LoadMethod.BothPreloadFirst,
+                cacheCurrentScene: false,
+                "no_transition"
+            );
         }
         else
         {
-            ScreenManager.Instance.SwitchScreenPath(gamePlayScreen, false);
+            await LongSceneManagerCs.Instance.SwitchScene(
+                gamePlayScreen,
+                LongSceneManagerCs.LoadMethod.BothPreloadFirst,
+                cacheCurrentScene: false,
+                "no_transition"
+            );
         }
     }
 }
