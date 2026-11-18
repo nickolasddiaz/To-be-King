@@ -16,8 +16,9 @@ position = Vector2(480, 270)
 texture = ExtResource("1_70pgc")
 
 [node name="Player" parent="." unique_id=1447108591 instance=ExtResource("2_q0gqs")]
+unique_name_in_owner = true
 z_index = 10
-position = Vector2(59, 44)
+position = Vector2(800, 270)
 scale = Vector2(0.931, 0.872)
 
 [node name="PlacementManager" parent="." unique_id=993788854 instance=ExtResource("2_4jtd1")]

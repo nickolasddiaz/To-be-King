@@ -23,10 +23,12 @@ public partial class UnlockScreen : CanvasLayer
         {
             await LongSceneManagerCs.Instance.SwitchScene(
                 gamePlayScreen,
-                LongSceneManagerCs.LoadMethod.BothPreloadFirst,
-                cacheCurrentScene: false,
+                LongSceneManagerCs.LoadMethod.PreloadCache,
+                cacheCurrentScene: true,
                 "no_transition"
             );
+            PlacementData.Instance.enterPlacement();
+
         };
 
         var building = DayInfo.Instance.getTodaysBuilding();

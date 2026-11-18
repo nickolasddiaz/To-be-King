@@ -108,28 +108,28 @@ Time limit for each day is two to five minutes
 
 ### List of unlocks
 
-| Building Name | Produces  | Takes                     | Costs |
-|---------------|-----------|---------------------------|-------|
-| Barley crop   | Barley    | N/A                       | 100   |
-| Cabbage crop  | Cabbage   | N/A                       | 150   |
-| Grape crop    | Grape     | N/A                       | 500   |
-| Sheep pen     | Wool      | 3 Barley                  | 500   |
-| Cow pen       | Milk      | 3 Barley                  | 500   |
-| Bread Oven    | Bread     | 3 Barley                  | 2000  |
-| Distillery    | Ale, Wine | 2 Barley2 Grapes + Barley | 3000  |
+| Building Name | Produces  | Takes                      | Costs |
+|---------------|-----------|----------------------------|-------|
+| Barley crop   | Barley    | N/A                        | 100   |
+| Cabbage crop  | Cabbage   | N/A                        | 150   |
+| Grape crop    | Grape     | N/A                        | 500   |
+| Sheep pen     | Wool      | 3 Barley                   | 500   |
+| Cow pen       | Milk      | 3 Barley                   | 500   |
+| Bread Oven    | Bread     | 3 Barley                   | 2000  |
+| Distillery    | Ale, Wine | 2 Barley 2 Grapes + Barley | 3000  |
 
 ### Day
 
-| Day | Product Requirement                                                          | Unlockable buildings, seeds, animals | Money given at the end of day | Kindness quest                                       |
-|-----|------------------------------------------------------------------------------|--------------------------------------|-------------------------------|------------------------------------------------------|
-| 1   | 10 barleys                                                                   | Tutorial barley crop                 | 300                           |                                                      |
-| 2   | 10 barleys 10 cabbages                                                       | Cabbage crop                         | 600                           |                                                      |
-| 3   | 8 barleys 8 cabbages 2 wools                                                 | Sheep pen                            | 1000                          | Give the beggar 2 barleys 2 cabbages                 |
-| 4   | 4 cabbages 4 wools 4 milks                                                   | Cow pen                              | 2000                          |                                                      |
-| 5   | 4 breads4 milks4 wools4 barleys                                              | Bread oven                           | 3000                          | Give 2 buckets of milk to the passing caravan        |
-| 6   | 5 ales 4 milks 4 wools 5 cabbages                                            | Distillery                           | 4000                          |                                                      |
-| 7   | 10 grapes8 cabbages4 ales                                                    | Grapes                               | 5000                          |                                                      |
-| 8   | 10 barleys 10 cabbages 10 grapes 10 wools 10 milks 10 breads10 ales 10 wines |                                      | Game finished                 | Help the disguised king to palace (costs 30 seconds) |
+| Day | Product Requirement                                                           | Unlockable buildings, seeds, animals | Money given at the end of day | Kindness quest                                       |
+|-----|-------------------------------------------------------------------------------|--------------------------------------|-------------------------------|------------------------------------------------------|
+| 1   | 10 barleys                                                                    | Tutorial barley crop                 | 300                           |                                                      |
+| 2   | 10 barleys 10 cabbages                                                        | Cabbage crop                         | 600                           |                                                      |
+| 3   | 8 barleys 8 cabbages 2 wools                                                  | Sheep pen                            | 1000                          | Give the beggar 2 barleys 2 cabbages                 |
+| 4   | 4 cabbages 4 wools 4 milks                                                    | Cow pen                              | 2000                          |                                                      |
+| 5   | 4 breads 4 milks 4 wools 4 barleys                                            | Bread oven                           | 3000                          | Give 2 buckets of milk to the passing caravan        |
+| 6   | 5 ales 4 milks 4 wools 5 cabbages                                             | Distillery                           | 4000                          |                                                      |
+| 7   | 10 grapes 8 cabbages 4 ales                                                   | Grapes                               | 5000                          |                                                      |
+| 8   | 10 barleys 10 cabbages 10 grapes 10 wools 10 milks 10 breads 10 ales 10 wines |                                      | Game finished                 | Help the disguised king to palace (costs 30 seconds) |
 
 ## Details about the art
 

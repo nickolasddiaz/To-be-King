@@ -11,7 +11,6 @@ public partial class StartGameScreen : CanvasLayer
 
     public override void _Ready()
     {
-        LongSceneManagerCs.Instance.MaxCacheSize = 20;
         GetNode<Button>("%Credits").Pressed += async () =>
         {
             await LongSceneManagerCs.Instance.SwitchScene(

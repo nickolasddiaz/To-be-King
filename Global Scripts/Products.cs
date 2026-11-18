@@ -16,7 +16,6 @@ public enum ProductType
 
 public class ProductData
 {
-    public int amount;
     public Texture2D icon;
     public Texture2D logo;
 }
@@ -26,6 +25,7 @@ public partial class Products : Node
     public static Products Instance { get; private set; }
 
     public Dictionary<ProductType, ProductData> data = new() { };
+    public Dictionary<ProductType, int> productNeeds;
 
     [Export]
     public SpriteFrames productIcons { get; set; }
@@ -36,6 +36,7 @@ public partial class Products : Node
     public override void _Ready()
     {
         Instance = this;
+        productNeeds = DayInfo.Instance.Days[0].ProductNeeds;
 
         foreach (ProductType product in Enum.GetValues<ProductType>())
         {
@@ -49,9 +50,9 @@ public partial class Products : Node
 
     public bool checkIfProductsAreSatisfied()
     {
-        foreach (var (_key, value) in data)
+        foreach (var (_product, value) in productNeeds)
         {
-            if (value.amount != 0)
+            if (value != 0)
                 return false;
         }
 

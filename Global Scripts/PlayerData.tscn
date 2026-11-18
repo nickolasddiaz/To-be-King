@@ -4,3 +4,4 @@
 
 [node name="PlayerData" type="Node" unique_id=745075862]
 script = ExtResource("1")
+gamePlayScreen = "uid://bygh0wno1dfkl"

@@ -46,12 +46,19 @@ public partial class TaskScreen : CanvasLayer
         }
     }
 
+    // called when scene is transitioned to this
     public void updateProductAmounts()
     {
-        foreach ((ProductType product, NextTaskScreenBox sceneInstance) in productItems)
+        foreach (ProductType product in productItems.Keys)
         {
-            sceneInstance.setText($"{product}: {Products.Instance.data[product].amount}");
+            productItems[product].Hide();
         }
+        foreach ((ProductType product, int number) in DayInfo.Instance.getToday().ProductNeeds)
+        {
+            productItems[product].setText($"{product}: {number}");
+            productItems[product].Show();
+        }
+
     }
 
     private async void OnButtonPressed()
@@ -63,7 +70,7 @@ public partial class TaskScreen : CanvasLayer
             await LongSceneManagerCs.Instance.SwitchScene(
                 unlockScreen,
                 LongSceneManagerCs.LoadMethod.BothPreloadFirst,
-                cacheCurrentScene: false,
+                cacheCurrentScene: true, // rebuilds the building unlocked based on the day
                 "no_transition"
             );
         }
@@ -72,9 +79,10 @@ public partial class TaskScreen : CanvasLayer
             await LongSceneManagerCs.Instance.SwitchScene(
                 gamePlayScreen,
                 LongSceneManagerCs.LoadMethod.BothPreloadFirst,
-                cacheCurrentScene: false,
+                cacheCurrentScene: true,
                 "no_transition"
             );
+            PlacementData.Instance.enterPlacement();
         }
     }
 }

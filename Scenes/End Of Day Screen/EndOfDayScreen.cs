@@ -18,20 +18,23 @@ public partial class EndOfDayScreen : CanvasLayer
 
         title = GetNode<Label>("%Title");
         label = GetNode<Label>("%Label");
+        updateEndofDay();
     }
 
     public void updateEndofDay()
     {
         title.Text = $"End of day results:{DayInfo.Instance.formatDay()}";
-
-        if (Products.Instance.checkIfProductsAreSatisfied())
+        bool passed = Products.Instance.checkIfProductsAreSatisfied();
+        if (passed)
         {
             if (DayInfo.Instance.islastday())
             {
                 title.Text = "Congrats you beat the Game";
+            } else
+            {
+                DayInfo.Instance.nextDay(passed);
             }
 
-            DayInfo.Instance.day++;
             label.Text = "You passed this day: going to the next day";
         }
         else
@@ -54,11 +57,13 @@ public partial class EndOfDayScreen : CanvasLayer
         else
         {
             await LongSceneManagerCs.Instance.SwitchScene(
-                EndGamePath,
+                NextTaskPath,
                 LongSceneManagerCs.LoadMethod.BothPreloadFirst,
-                cacheCurrentScene: false,
+                cacheCurrentScene: true,
                 "no_transition"
             );
+            TaskScreen taskScene = (TaskScreen)LongSceneManagerCs.Instance.GetCurrentScene();
+            taskScene.updateProductAmounts();
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -12,6 +13,7 @@ public partial class ProductScreen : CanvasLayer
 
     public override void _Ready()
     {
+        PlacementData.Instance.productScreen = this;
         hBoxContainer = GetNode<HBoxContainer>("%HBoxContainer");
         timeLabel = GetNode<Label>("%Time");
 
@@ -20,23 +22,31 @@ public partial class ProductScreen : CanvasLayer
             ProductItem sceneInstance = (ProductItem)product_item.Instantiate();
             hBoxContainer.AddChild(sceneInstance);
             sceneInstance.setTexture(data.logo);
-            sceneInstance.setText(data.amount.ToString());
             productContainers[product] = sceneInstance;
         }
 
-        setTimeText("9:99");
     }
 
     public void updateProductAmounts()
     {
-        foreach (var (product, sceneInstance) in productContainers)
+        setTime(DayInfo.Instance.getToday().Time);
+
+
+        foreach (ProductType product in productContainers.Keys)
         {
-            sceneInstance.setText(Products.Instance.data[product].amount.ToString());
+            productContainers[product].Hide();
         }
+        foreach ((ProductType product, int number) in DayInfo.Instance.getToday().ProductNeeds)
+        {
+            productContainers[product].setText(number.ToString());
+            productContainers[product].Show();
+        }
+
     }
 
-    public void setTimeText(string text)
+    public void setTime(float time)
     {
-        timeLabel.Text = text;
+        TimeSpan elapsedTime = TimeSpan.FromSeconds(time);
+        timeLabel.Text = string.Format("{0:D2}:{1:D2}", (int)elapsedTime.TotalMinutes, elapsedTime.Seconds);
     }
 }

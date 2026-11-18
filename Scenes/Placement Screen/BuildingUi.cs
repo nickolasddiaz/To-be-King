@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using Godot;
 
 public partial class BuildingUi : CanvasLayer
@@ -11,10 +11,13 @@ public partial class BuildingUi : CanvasLayer
     [Export(PropertyHint.File, "*.tscn")]
     public string NextPath { get; set; }
 
+    private readonly Dictionary<BuildingType, BuildingUiButton> buildingContainers = new();
+
     public override void _Ready()
     {
         inventoryContainer = GetNode<GridContainer>("%GridContainer");
-        // GetNode<Button>("%Continue").Pressed += OnButtonPressed;
+        GetNode<Button>("%Continue").Pressed += PlacementData.Instance.leavePlacement;
+        PlacementData.Instance.buildingUi = this;
 
         foreach (Node child in inventoryContainer.GetChildren())
         {
@@ -36,6 +39,17 @@ public partial class BuildingUi : CanvasLayer
 
             sceneInstance.productPic.Pressed += () =>
                 PlacementData.Instance.selectBuilding(buildingType);
+
+            // sceneInstance.Hide();
+            buildingContainers[buildingType] = sceneInstance;
+        }
+    }
+
+    public void updateBuildingAmounts()
+    {
+        if (DayInfo.Instance.getToday().UnlockableBuilding is BuildingType buildingType)
+        {
+             buildingContainers[buildingType].Show();
         }
     }
 }

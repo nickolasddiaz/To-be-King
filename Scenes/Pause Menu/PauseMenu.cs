@@ -18,9 +18,10 @@ public partial class PauseMenu : CanvasLayer
             await LongSceneManagerCs.Instance.SwitchScene(
                 nextTaskScreen,
                 LongSceneManagerCs.LoadMethod.BothPreloadFirst,
-                cacheCurrentScene: false,
+                cacheCurrentScene: true,
                 "no_transition"
             );
+            PlacementData.Instance.restartDay();
         };
 
         GetNode<Button>("%RestartGame").Pressed += async () =>
@@ -32,6 +33,7 @@ public partial class PauseMenu : CanvasLayer
                 cacheCurrentScene: false,
                 "no_transition"
             );
+            PlacementData.Instance.restartGame();
         };
     }
 

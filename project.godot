@@ -16,12 +16,12 @@ config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 
 [autoload]
 
+LongSceneManagerCs="*uid://cem3ayuyahlrj"
+DayInfo="*uid://dwb5unstn3qab"
 Products="*uid://dyoitnnihw44k"
 Buildings="*uid://byk7j8j8s267"
-DayInfo="*uid://dwb5unstn3qab"
 PlayerData="*res://Global Scripts/PlayerData.tscn"
 PlacementData="*uid://dno6paarnvbhj"
-LongSceneManagerCs="*uid://cem3ayuyahlrj"
 
 [display]
 

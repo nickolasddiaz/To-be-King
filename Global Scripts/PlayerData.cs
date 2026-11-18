@@ -12,9 +12,14 @@ public partial class PlayerData : Node
     public Queue<ProductType> inventory = new();
     public int inventorySize = 3;
 
+    [Export(PropertyHint.File, "*.tscn")]
+    public string gamePlayScreen { get; set; } = string.Empty;
+
     public override async void _Ready()
     {
         Instance = this;
+        LongSceneManagerCs.Instance.MaxCacheSize = 20;
+        LongSceneManagerCs.Instance.PreloadScene(gamePlayScreen);
     }
 
     public bool isInventoryNotFull()
@@ -22,19 +27,4 @@ public partial class PlayerData : Node
         return inventory.Count >= inventorySize;
     }
 
-    public void toPlacementScreen() { }
-
-    public void toGamePlayScreen() { }
-
-    public void toEndOfDayScreen() { }
-
-    public void handleNewGame() { }
-
-    public string formatTime()
-    {
-        TimeSpan elapsedTime = TimeSpan.FromSeconds(time);
-
-        // Format as minute:second
-        return string.Format("{0:D2}:{1:D2}", (int)elapsedTime.TotalMinutes, elapsedTime.Seconds);
-    }
 }

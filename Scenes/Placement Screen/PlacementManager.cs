@@ -9,6 +9,7 @@ public partial class PlacementManager : Node2D
     public float cellsize = 32;
 
     private TileMapLayer GridPlacement;
+    private BuildingUi buildingUi;
 
     private Vector2I hoveredcell;
 
@@ -22,10 +23,24 @@ public partial class PlacementManager : Node2D
     //So we need a dictionary because we need to know WHAT we are moving IF we are actually going to implement moving/deleting
     private Dictionary<Vector2I, Node2D> occupiedcells = new Dictionary<Vector2I, Node2D>();
 
+    public void enterPlacement()
+    {
+        Visible = true;
+        buildingUi.Visible = true;
+        PlacementData.Instance.PlacementEnabled = false;
+    }
+
+    public void leavePlacement()
+    {
+        Visible = false;
+        buildingUi.Visible = false;
+    }
+
     public override void _Ready()
     {
         PlacementData.Instance.placementManager = this;
         GridPlacement = GetNode<TileMapLayer>("%GridPlacement");
+        buildingUi = GetNode<BuildingUi>("%BuildingUi");
     }
 
     public override void _Process(double delta)

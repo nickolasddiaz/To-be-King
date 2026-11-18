@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -50,6 +49,14 @@ public partial class DayInfo : Node
     public List<Day> Days;
 
     public int day;
+    public void nextDay(bool passed)
+    {
+        if (passed)
+        {
+            day++;
+        }
+        Products.Instance.productNeeds = getToday().ProductNeeds;
+    }
 
     public override void _Ready()
     {
@@ -69,7 +76,7 @@ public partial class DayInfo : Node
 
     public string formatDay()
     {
-        return $"Day: ${day + 1}";
+        return $"Day: {day + 1}";
     }
 
     public BuildingType getTodaysBuilding()
@@ -106,4 +113,5 @@ public partial class DayInfo : Node
             throw new JsonException($"Failed to parse DayInfo JSON: {ex.Message}");
         }
     }
+
 }

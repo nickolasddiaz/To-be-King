@@ -4,3 +4,4 @@
 
 [node name="PlacementData" type="Node" unique_id=2037352717]
 script = ExtResource("1_0ukto")
+endOfDayPath = "uid://b7b5jocclw1kw"

@@ -1,4 +1,3 @@
-using System;
 using Godot;
 
 public partial class TutorialScreen : CanvasLayer
@@ -13,9 +12,12 @@ public partial class TutorialScreen : CanvasLayer
             await LongSceneManagerCs.Instance.SwitchScene(
                 NextPath,
                 LongSceneManagerCs.LoadMethod.BothPreloadFirst,
-                cacheCurrentScene: false,
+                cacheCurrentScene: true,
                 "no_transition"
             );
+
+            TaskScreen taskScene = (TaskScreen)LongSceneManagerCs.Instance.GetCurrentScene();
+            taskScene.updateProductAmounts();
         };
     }
 }
